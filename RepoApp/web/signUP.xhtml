@@ -8,12 +8,17 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-    <head>
+    <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body style="background-color:red; height:100%; width:100%">
-        <div style="position:absolute; background-color:white; border-radius:15px; right:40%; padding:15px">
+    </h:head>
+    <body style="background-color:#323232; height:100%; width:100%">
+        
+        
+        <div style="position:absolute; background-color:white; border-radius:15px; right:35%; padding:25px; opacity:0.7; height:68%; width:27%">
+        </div>
+        
+        <div style="font-family:Source Sans Pro; position:absolute; border-radius:15px; right:35%; padding:23px">
             <h2 style="padding-left:33%">Sign Up</h2>
         <h:form>
             
@@ -40,8 +45,8 @@ and open the template in the editor.
                 <h:outputLabel for="secAnswer" value="Security Answer: "/>
                 <p:inputText id="secAnswer"/>
                 <h:outputLabel for="reason" value="Reason for account: "/>
-                <p:inputText id="reason"/>
-                           
+                <p:inputTextarea id="reason"/>
+                <p:button id="signupSubmitButton" value="Submit" outcome="waitingForAdmin.xhtml" icon="fa-arrow-circle-o-right"/>           
             </h:panelGrid>
            
         </h:form>

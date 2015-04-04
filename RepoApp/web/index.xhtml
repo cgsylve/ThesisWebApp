@@ -6,11 +6,17 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body style="background-image:url(http://i764.photobucket.com/albums/xx286/lightsatnight/night-time-cities-09.jpg)">
+    <h:body style="background-color:#323232">
         
-        <div name="loginGrid" style="position:absolute; right:200px; bottom:205px; background-color:white; border-radius: 25px; padding:20px">
-               
-            <h:form>
+        <div style="color:#FFCC00">
+            <p style="font-size:80px; font-family:Source Sans Pro;">Welcome to the thesis repository!</p>
+            <p:separator/>
+           
+            <span style="top: 100px; font-family:Source Sans Pro; font-size:30px">Upload, review, and download thesis projects quickly and easily.</span>
+                
+        </div>
+        <div name="loginGrid" style="font-family:Source Sans Pro; position:absolute; right:200px; bottom:205px; border-radius: 25px; padding:20px">
+        <h:form>
             <h:outputText value="Welcome! Please login or sign up to continue."/>
             <h:panelGrid columns="2" id="loginPanelGrid" cellpadding="5">
 
@@ -19,14 +25,15 @@
 
                 <h:outputLabel for="password" value="Password: " id="passwordLabel"/>
                 <p:password id="password" label="Password 1" required="true" />
-                <p:button id="loginButton" value="Login"/>
-                <p:button id="signupButton" value="Sign Up" outcome="signUP.xhtml"/>
+                <p:button id="loginButton" value="Login" icon="fa-arrow-circle-o-right"/>
+                <p:button id="signupButton" value="Sign Up" outcome="signUP.xhtml" icon="fa-check-circle"/>
             </h:panelGrid>
                 
            `
             </h:form>
-                    
         </div>
+        <div name="loginGrid" style="z-index:-1; height:24%; width:23%; position:absolute; right:200px; bottom:205px; background-color:white; border-radius: 25px; padding:20px; opacity:0.7">
+         </div>
     </h:body>
 </html>
 
