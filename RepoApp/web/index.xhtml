@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body style="background-image:url(http://i764.photobucket.com/albums/xx286/lightsatnight/night-time-cities-09.jpg)">
+        
+        <div name="loginGrid" style="position:absolute; right:200px; bottom:205px; background-color:white; border-radius: 25px; padding:20px">
+               
+            <h:form>
+            <h:outputText value="Welcome! Please login or sign up to continue."/>
+            <h:panelGrid columns="2" id="loginPanelGrid" cellpadding="5">
+
+                <h:outputLabel for="username" value="Username: " id="usernameLabel"/>
+                <p:inputText id="username" label="Username 1" required="true"/>
+
+                <h:outputLabel for="password" value="Password: " id="passwordLabel"/>
+                <p:password id="password" label="Password 1" required="true" />
+                <p:button id="loginButton" value="Login"/>
+                <p:button id="signupButton" value="Sign Up" outcome="signUP.xhtml"/>
+            </h:panelGrid>
+                
+           `
+            </h:form>
+                    
+        </div>
+    </h:body>
+</html>
+
