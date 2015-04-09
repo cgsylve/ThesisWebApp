@@ -78,7 +78,7 @@ public class ProfileDAOImpl implements ProfileDAO {
             // columns), and formulate the result string to send back to the client.
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            String userID, firstName, lastName, password, email, secQ, secA;
+            String userID, firstName, lastName, password, email, secQ, secA, reason, admin;
             Users user;
             while (rs.next()) {
                 // 1. if a float (say PRICE) is to be retrieved, use rs.getFloat("PRICE");
@@ -90,8 +90,10 @@ public class ProfileDAOImpl implements ProfileDAO {
                 email = rs.getString("Email");
                 secQ = rs.getString("SecQ");
                 secA = rs.getString("SecA");
+                reason = rs.getString("reason");
+                admin = rs.getString("admin");
                 // make a ProfileBean object out of the values
-                user = new Users(userID, firstName, lastName, password, email, secQ, secA);
+                user = new Users(userID, firstName, lastName, password, email, secQ, secA, reason, admin);
                 // add the newly created object to the collection
                 aProfileBeanCollection.add(user);
             }

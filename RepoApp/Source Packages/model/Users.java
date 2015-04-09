@@ -34,7 +34,7 @@ public class Users {
     }
     
     public Users(String firstName, String lastName, String userID,
-            String password, String password2, String email, String secQ, String secA){
+            String password, String password2, String email, String secQ, String secA, String reason, String admin){
         
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,10 +44,12 @@ public class Users {
         this.email = email;
         this.secQ = secQ;
         this.secA = secA;
+        this.reason = reason;
+        this.admin = admin;
     }
     
     public Users(String firstName, String lastName, String userID,
-            String password, String email, String secQ, String secA){
+            String password, String email, String secQ, String secA, String reason, String admin){
         
         this.firstName = firstName;
         this.lastName = lastName;
@@ -56,6 +58,8 @@ public class Users {
         this.email = email;
         this.secQ = secQ;
         this.secA = secA;
+        this.reason = reason;
+        this.admin = admin;
     }
     
     /**
