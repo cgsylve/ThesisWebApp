@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 9, 2015, 3:37:43 PM
+    Author     : it3530216
+*/
+body{
+    background-color:#323232;
+    font-family: Source Sans Pro; 
+    color:#FFCC00;
+}
+
+#uploadNavbar #theNav{
+   
+    top:20px;
+    right:30px; 
+    clear:both;
+}
+
+.footer{
+    position:absolute; 
+    bottom:20px; 
+    left:30px; 
+    clear:both; 
+}
+
+#uploadForm{
+     
+    top:40px; 
+    width:400px; 
+    margin-right:auto; 
+    margin-left:auto; 
+   
+}
+
+#formHead{
+   text-align:center;  
+}
+
+#uploadInfo{
+    font-size: 40px; 
+    text-align:center; 
+    right:100px; 
+    padding-left:150px; 
+}
+
+#uploadFormFooter{
+   padding-left:23%; 
+   left:50%; 
+   
+}
