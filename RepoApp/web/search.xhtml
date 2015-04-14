@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="search.css"  />
+    </h:head>
+    <h:body>
+        <div id="searchNavbar" class="navbar">
+            <h:form>
+            <h:panelGrid columns="4" id="navGrid" cellpadding="5">
+               <h:commandLink value="Home" style="text-decoration:none;color:#FFCC00;"/>
+               <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+               <h:commandLink value="My Projects" action="myProjects.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+               <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+            </h:panelGrid>
+            </h:form>
+        </div>
+        <hr/>
+        <h:form>
+        <h:panelGrid columns="5" cellpadding="5" id="searchField">
+             <p:selectOneMenu>
+                    <f:selectItem itemValue="" itemLabel="Student Name" />
+                    <f:selectItem itemValue="" itemLabel="Date Uploaded" />
+                    <f:selectItem itemValue="" itemLabel="Class Number" />
+                    <f:selectItem itemValue="" itemLabel="Semester" />
+                    <f:selectItem itemValue="" itemLabel="Keyword" />
+                </p:selectOneMenu>
+            
+                <h:outputLabel for="searchTerm" value="Search Term: "/>
+                <p:inputText id="searchTerm" value=""/>
+                <p:button id="searchButton" value="Submit" icon="fa-arrow-circle-o-right"/>  
+                <p>Here you can search via Name, Date Uploaded, Class, Semester, or by a Keyword.</p>
+         </h:panelGrid>
+         </h:form>
+        <hr/>
+        <h1>Results</h1>
+        <h:form>
+        <p:fieldset legend="projectFromSearch" toggleable="true" toggleSpeed="500">
+        
+        <h:panelGrid columns="2" cellpadding="5">
+            
+            <h:outputText value="Creator Name: "></h:outputText>
+            <h:outputText value="nameFromBean"></h:outputText>
+            
+            
+            <h:outputText value="Class Name: "></h:outputText>
+            <h:outputText value="classFromBean"></h:outputText>
+            
+            <h:outputText value="Keyword 1: "></h:outputText>
+            <h:outputText value="keywordFromBean"></h:outputText>
+            
+            <h:outputText value="Keyword 2: "></h:outputText>
+            <h:outputText value="keywordFromBean"></h:outputText>
+            
+            <h:outputText value="Keyword 3:"></h:outputText>
+            <h:outputText value="keywordFromBean "></h:outputText>
+            
+            <h:outputText value="Description: "></h:outputText>
+            <h:outputText value="descriptionFromBean"></h:outputText>
+            
+            <h:commandLink value="Show Similar" action="showSimilar.xhtml"/>
+            <h:commandLink value="Download"/>
+        </h:panelGrid>
+        </p:fieldset>
+        </h:form>
+        <div id="uploadFooter" class="footer">
+            <p>
+                Problems? Email the developer at cgsylve@ilstu.edu
+            </p>
+        </div>
+        
+    </h:body>
+</html>
