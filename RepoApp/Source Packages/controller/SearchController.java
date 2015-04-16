@@ -6,10 +6,12 @@
 package controller;
 
 import dao.SearchDAOImpl;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import model.ProjectBean;
 import model.SearchBean;
+import model.Thesis;
 
 /**
  *
@@ -21,9 +23,11 @@ import model.SearchBean;
 public class SearchController {
     
     ProjectBean projectBean; 
-    SearchDAOImpl searchDAO;
+    SearchDAOImpl searchDAO = new SearchDAOImpl();
     SearchBean searchBean; 
+    Thesis thesis; 
     String query; 
+    private ArrayList<Thesis> arry = new ArrayList<>();
     
     
     public SearchController() {
@@ -50,11 +54,36 @@ public class SearchController {
         this.searchBean = searchBean; 
     }
     
-    public void searchDatabase(){
-        query = "SELECT COURSENUMBER FROM PROJECTTABLE " + 
-                "WHERE " + searchBean.getSearchType() + "='" + searchBean.getSearchTerm() + "';";
-//        searchDAO.searchProjects(query);
-        System.out.println(query);
+    public Thesis getThesis(){
+        return thesis; 
     }
+    
+    public void setThesis(Thesis thesis){
+        this.thesis = thesis; 
+    }
+    
+    /**
+     * @return the arry
+     */
+    public ArrayList<Thesis> getArry() {
+        return arry;
+    }
+
+    /**
+     * @param arry the arry to set
+     */
+    public void setArry(ArrayList<Thesis> arry) {
+        this.arry = arry;
+    }
+    
+    public void searchDatabase(){
+        
+        String searchTerm = searchBean.getSearchTerm();
+        String searchType = searchBean.getSearchType();
+        
+        arry = searchDAO.searchProjects(searchType, searchTerm);
+    }
+
+    
     
 }

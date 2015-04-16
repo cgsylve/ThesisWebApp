@@ -5,11 +5,13 @@
  */
 package dao;
 
+import static com.sun.javafx.scene.CameraHelper.project;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.ProjectBean;
+import model.Thesis;
 
 /**
  *
@@ -18,11 +20,15 @@ import model.ProjectBean;
 public class SearchDAOImpl {
     
     
-    public ArrayList searchProjects(String query){
+    public ArrayList searchProjects(String searchType, String searchTerm){
         
         Connection DBConn = null; 
+        
+        String query = "SELECT * FROM PROJECTTABLE " 
+                + "WHERE " + searchType + "= '" + searchTerm + "'";
+        Thesis thesis; 
         ArrayList projectCollection = new ArrayList(); 
-        ProjectBean project; 
+        
         try{
             //prep DB for queries
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
@@ -30,6 +36,7 @@ public class SearchDAOImpl {
             DBConn = DBHelper.connect2DB(myDB, "itkstu", "student");
             
             //load query
+            
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(query); 
             String courseNumber, liveLink, key1, chair, semCompleted, stuName, dateCompleted; 
@@ -42,8 +49,8 @@ public class SearchDAOImpl {
                 stuName = rs.getString("STUDENTNAME");
                 dateCompleted = rs.getString("DATECOMPLETED");
                 
-                project = new ProjectBean(courseNumber, liveLink, key1, chair, semCompleted, stuName, dateCompleted);
-                projectCollection.add(project);
+                thesis = new Thesis(courseNumber, liveLink, key1, chair, semCompleted, stuName, dateCompleted);
+                projectCollection.add(thesis);
             }
             rs.close();
             stmt.close();
@@ -53,6 +60,15 @@ public class SearchDAOImpl {
         }
         return projectCollection; 
     }
+    
+    
+//    public ArrayList findAll() {
+//
+//        String query = "SELECT * FROM PROJECTTABLE";
+//        ArrayList aProfileCollection = searchProjects(query);
+//        return aProfileCollection;
+//
+//    }
     
     
 }

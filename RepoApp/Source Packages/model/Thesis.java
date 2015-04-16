@@ -5,17 +5,12 @@
  */
 package model;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
 /**
  *
  * @author calebsylvester
  */
-
-@ManagedBean
-@SessionScoped
-public class ProjectBean {
+public class Thesis {
+    
     private String courseNumber; 
     private String liveLink;
     private String keywordOne; 
@@ -23,12 +18,12 @@ public class ProjectBean {
     private String semesterCompleted; 
     private String studentName; 
     private String dateCompleted; 
+
     
-    
-    public ProjectBean(){
+    public Thesis(){
     }
     
-    public ProjectBean(String courseNumber, String liveLink, String keywordOne, String committeeChair, String semesterCompleted, String studentName, String dateCompleted ){
+    public Thesis(String courseNumber, String liveLink, String keywordOne, String committeeChair, String semesterCompleted, String studentName, String dateCompleted ){
         this.courseNumber = courseNumber; 
         this.liveLink = liveLink; 
         this.keywordOne = keywordOne;        
@@ -137,6 +132,7 @@ public class ProjectBean {
         this.dateCompleted = dateCompleted;
     }
     
-    
+
             
 }
+
