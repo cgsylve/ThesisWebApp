@@ -7,6 +7,7 @@ package controller;
 
 import dao.SearchDAOImpl;
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import model.ProjectBean;
@@ -23,17 +24,19 @@ import model.Thesis;
 public class SearchController {
     
     ProjectBean projectBean; 
-    SearchDAOImpl searchDAO = new SearchDAOImpl();
+    SearchDAOImpl searchDAO; 
     SearchBean searchBean; 
     Thesis thesis; 
     String query; 
-    private ArrayList<Thesis> arry = new ArrayList<>();
+    ArrayList<Thesis> arry;
+   
     
     
     public SearchController() {
      projectBean = new ProjectBean(); 
      searchBean = new SearchBean();
-
+     arry = new ArrayList<>();
+     searchDAO = new SearchDAOImpl();
     }
 
     
@@ -76,14 +79,17 @@ public class SearchController {
         this.arry = arry;
     }
     
-    public void searchDatabase(){
+    public String searchDatabase(){
         
         String searchTerm = searchBean.getSearchTerm();
         String searchType = searchBean.getSearchType();
         
         arry = searchDAO.searchProjects(searchType, searchTerm);
+        searchBean.setThesisList(arry);
+       
+        
+        return "searchResults.xhtml";
     }
 
-    
     
 }

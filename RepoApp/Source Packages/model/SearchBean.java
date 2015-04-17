@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,11 +18,14 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class SearchBean {
+    
     private String searchType; 
     private String searchTerm;
+    private ArrayList<Thesis> thesisList;
+    
     
     public SearchBean(){
-    
+        thesisList = new ArrayList<>(); 
     }
     
     public SearchBean(String searchType, String searchTerm){
@@ -55,6 +60,22 @@ public class SearchBean {
     public void setSearchTerm(String searchTerm) {
         this.searchTerm = searchTerm;
     }
+
+    /**
+     * @return the thesisList
+     */
+    public ArrayList<Thesis> getThesisList() {
+        return thesisList;
+    }
+
+    /**
+     * @param thesisList the thesisList to set
+     */
+    public void setThesisList(ArrayList<Thesis> thesisList) {
+        this.thesisList = thesisList;
+    }
+    
+    
     
     
 }

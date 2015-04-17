@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -26,7 +27,7 @@ and open the template in the editor.
             </h:form>
         </div>
         <hr/>
-        <h:form>
+        <h:form id="myForm">
         <h:panelGrid columns="5" cellpadding="5" id="searchField">
             <p:selectOneMenu value="#{searchController.searchBean.searchType}">
                     <f:selectItem itemValue="STUDENTNAME" itemLabel="Student Name" />
@@ -39,7 +40,7 @@ and open the template in the editor.
                 <h:outputLabel for="searchTerm" value="Search Term: "/>
                 <p:inputText id="searchTerm" value="#{searchController.searchBean.searchTerm}"/>
                 <h:commandButton id="searchButton" value="Submit" action="#{searchController.searchDatabase()}">
-                    <f:ajax execute="searchButton" render="output"/>
+<!--                    <f:ajax execute="myForm" render="output"/>-->
                 </h:commandButton>
                 
                 <p>Here you can search via Name, Date Uploaded, Class, Semester, or by a Keyword.</p> <!-- NULL POINTER EXCEPTION OCCURS WITH THIS OUTCOME -->
@@ -47,7 +48,30 @@ and open the template in the editor.
          </h:form>
         <hr/>
         <h1>Results</h1>
-        <h:outputText id="output" value ="#{searchController.arry}"></h:outputText>
+        
+<!--        <table id="output">
+            <tr>
+            <th>Course Number</th>
+            <th>Live Link</th>
+            <th>Keyword</th>
+            <th>Committee Chair</th>
+            <th>Semester Completed</th>
+            <th>Student Name</th>
+            <th>Date Completed</th>
+         </tr>
+        <ui:repeat var="elem" value="#{searchController.searchBean.thesisList}">
+        
+        <tr>
+            <td>#{elem.courseNumber}</td>
+            <td>#{elem.liveLink}</td>
+            <td>#{elem.keywordOne}</td>
+            <td>#{elem.committeeChair}</td>
+            <td>#{elem.semesterCompleted}</td>
+            <td>#{elem.studentName}</td>
+            <td>#{elem.dateCompleted}</td>
+         </tr>
+     </ui:repeat>
+    </table>-->
         
 <!--        <h:form>
         <p:fieldset legend="projectFromSearch" toggleable="true" toggleSpeed="500">
