@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import model.LoginBean;
 import model.Users;
 
 /**
@@ -23,9 +24,11 @@ import model.Users;
 public class SignInController {
     private Users theModel;
     private static int numAttempts = 0;
+    LoginBean loginBean; 
     
         public SignInController(){
         theModel = new Users();
+        loginBean = new LoginBean();
     }
     
     public Users getTheModel(){
@@ -34,6 +37,14 @@ public class SignInController {
     
     public void setTheModel(Users theModel){
         this.theModel = theModel;
+    }
+    
+    public LoginBean getLoginBean(){
+        return loginBean; 
+    }
+    
+    public void setLoginBean(LoginBean logBean){
+        this.loginBean = logBean; 
     }
     
     public String signIn(){

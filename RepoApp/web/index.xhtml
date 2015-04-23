@@ -21,11 +21,11 @@
             <h:panelGrid columns="2" id="loginPanelGrid" cellpadding="5">
 
                 <h:outputLabel for="username" value="Username: " id="usernameLabel"/>
-                <p:inputText id="username" label="Username 1" required="true"/>
+                <p:inputText id="username" label="Username 1" required="true" value="#{signInController.loginBean.username}"/>
 
                 <h:outputLabel for="password" value="Password: " id="passwordLabel"/>
                 <p:password id="password" label="Password 1" required="true" />
-                <p:button id="loginButton" value="Login" icon="fa-arrow-circle-o-right"/>
+                <p:button id="loginButton" value="Login" icon="fa-arrow-circle-o-right" outcome="home.xhtml"/>
                 <p:button id="signupButton" value="Sign Up" outcome="signUP.xhtml" icon="fa-check-circle"/>
                 
             </h:panelGrid>
