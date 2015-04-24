@@ -29,7 +29,7 @@ public class SearchController {
     SearchBean searchBean; 
     Thesis thesis; 
     String query; 
-    
+   
     UpdateBean updateBean; 
     ArrayList<Thesis> arry;
    
@@ -106,6 +106,8 @@ public class SearchController {
     
     public String getMyProjects(){
         String username = "cgsylve";
+        
+        
         
         arry = searchDAO.searchMyProjects(username);
         searchBean.setThesisList(arry);

@@ -14,23 +14,31 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class UpdateBean {
+public class ThesisBean {
     
-    private String liveLinkKey; 
+     private Thesis thesis; 
+     
+     
+     public ThesisBean(){
+         thesis = new Thesis();
+     }
 
     /**
-     * @return the liveLinkKey
+     * @return the thesis
      */
-    public String getLiveLinkKey() {
-        return liveLinkKey;
+    public Thesis getThesis() {
+        return thesis;
     }
 
     /**
-     * @param liveLinkKey the liveLinkKey to set
+     * @param thesis the thesis to set
      */
-    public void setLiveLinkKey(String liveLinkKey) {
-        this.liveLinkKey = liveLinkKey;
+    public void setThesis(Thesis thesis) {
+        this.thesis = thesis;
     }
-    
+     
+     
+     
+     
     
 }

@@ -10,26 +10,19 @@
     <h:body>
         <h:form id="myForm">
             <table>
-                <thead><strong>Schedule</strong></thead>
+                <thead colspan="2"><strong>Schedule</strong></thead>
                 <tbody>
-                    <tr>
+                    <th>
                         <strong>TimeSlot</strong>
                         <strong>GroupName</strong>
 
-                    </tr>
+                    </th>
                     
-                    <ui:repeat var="elem" value="#{searchController.searchBean.myList}">
-        
-                        <tr>
-                            <td>#{elem.courseNumber}</td>
-                            <td>#{elem.liveLink}</td>
-                            <td>#{elem.keywordOne}</td>
-                            <td>#{elem.committeeChair}</td>
-                            <td>#{elem.semesterCompleted}</td>
-                            <td>#{elem.studentName}</td>
-                            <td>#{elem.dateCompleted}</td>
-                        </tr>
-                    </ui:repeat>
+                    
+                    
+                    
+                    
+                    
 
                 </tbody>
             </table>

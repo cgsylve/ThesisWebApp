@@ -8,12 +8,16 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:w="http://xmlns.jcp.org/jsf">
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
+        
+        
+         
         
         <div id="uploadNavbar" class="navbar">
             <div id="theNav">
@@ -34,25 +38,27 @@ and open the template in the editor.
                 <p:panelGrid columns="2">
                    
                     <h:outputLabel for="stuName" value="Name: "/>
-                    <p:inputText id="stuName" value="#{searchController.projectBean.studentName}"/>
+                    <p:inputText id="stuName" value="#{updateController.thesisBean.thesis.studentName}"/>
                     <h:outputLabel for="dateUploaded" value="Date Uploaded: "/>
-                    <p:inputText id="dateUploaded" value="#{searchController.projectBean.dateCompleted}"/>
+                    <p:inputText id="dateUploaded" value="#{updateController.thesisBean.thesis.dateCompleted}"/>
                     <h:outputLabel for="courseNumber" value="Course Number: "/>
-                    <p:inputText id="courseNumber" value="#{searchController.projectBean.courseNumber}"/>
+                    <p:inputText id="courseNumber" value="#{updateController.thesisBean.thesis.courseNumber}"/>
                     <h:outputLabel for="linkToProject" value="Link To Project"/>
-                    <p:inputText id="linkToProject" value="#{searchController.projectBean.liveLink}"/>
+                    <p:inputText id="linkToProject" value="#{updateController.thesisBean.thesis.liveLink}"/>
                     <h:outputLabel for="committeeChair" value="Committee Chair: "/>
-                    <p:inputText id="committeeChair" value="#{searchController.projectBean.committeeChair}"/>
+                    <p:inputText id="committeeChair" value="#{updateController.thesisBean.thesis.committeeChair}"/>
                     <h:outputLabel for="semesterCompleted" value="Semester Completed: "/>
-                    <p:inputText id="semesterCompleted" value="#{searchController.projectBean.semesterCompleted}"/>
+                    <p:inputText id="semesterCompleted" value="#{updateController.thesisBean.thesis.semesterCompleted}"/>
                     <h:outputLabel for="key1" value="Keyword 1: "/>
-                    <p:inputText id="key1" value="#{searchController.projectBean.keywordOne}"/>
+                    <p:inputText id="key1" value="#{updateController.thesisBean.thesis.keywordOne}"/>
                     
                  </p:panelGrid>
                 <div id="uploadFormFooter">
+                    
                 <h:panelGrid columns="1" id="uploadButton">
                     <h:commandButton value="Submit" action="#{searchController.updateMyProject()}"/>
                 </h:panelGrid>
+                    
                 </div>
             </h:form>
         </div>

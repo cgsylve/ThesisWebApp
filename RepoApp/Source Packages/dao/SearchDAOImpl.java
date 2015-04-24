@@ -23,7 +23,7 @@ public class SearchDAOImpl {
         
         Connection DBConn = null; 
         
-        String query = "SELECT * FROM PROJECTTABLE " 
+        String query = "SELECT * FROM CGSYLVE_SP2015_PROJECT353.PROJECTTABLE " 
                 + "WHERE " + searchType + "= '" + searchTerm + "'";
         Thesis thesis; 
         ArrayList projectCollection = new ArrayList(); 
@@ -31,7 +31,7 @@ public class SearchDAOImpl {
         try{
             //prep DB for queries
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-            String myDB = "jdbc:derby://localhost:1527/LocalProjectDatabase";
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/cgsylve_Sp2015_RepoApp";
             DBConn = DBHelper.connect2DB(myDB, "itkstu", "student");
             
             //load query
@@ -63,7 +63,7 @@ public class SearchDAOImpl {
     public ArrayList searchMyProjects(String username){
         Connection DBConn = null; 
         
-        String query = "SELECT * FROM PROJECTTABLE " 
+        String query = "SELECT * FROM CGSYLVE_SP2015_PROJECT353.PROJECTTABLE " 
                 + "WHERE USERID = '" + username + "'";
         
         Thesis thesis; 
@@ -72,7 +72,7 @@ public class SearchDAOImpl {
         try{
             //prep DB for queries
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-            String myDB = "jdbc:derby://localhost:1527/LocalProjectDatabase";
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/cgsylve_Sp2015_RepoApp";
             DBConn = DBHelper.connect2DB(myDB, "itkstu", "student");
             
             //load query
@@ -105,24 +105,17 @@ public class SearchDAOImpl {
         Connection DBConn = null; 
         
         int rowCount = 0; 
-        String insertString = "UPDATE PROJECTTABLE "
-                    +"SET COURSENUMBER = '" + courseNumber 
-                    //+"', LIVELINK = '" + liveLink
-                    +"', KEYWORDONE = '" + key1
-                    +"', COMMITTEECHAIR = '" + chair
-                    +"', SEMESTERCOMPLETED = '" + semCompleted
-                    +"', STUDENTNAME = '" + stuName
-                    +"', DATECOMPLETED = '" + dateCompleted
-                    +"' WHERE LIVELINK = 'TheLiveLink'";
+        
         
         
         
         try{
             //prep DB for queries
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-            String myDB = "jdbc:derby://localhost:1527/LocalProjectDatabase";
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/cgsylve_Sp2015_RepoApp";
             DBConn = DBHelper.connect2DB(myDB, "itkstu", "student");
             
+            String insertString = ""; 
             //load query
             
             Statement stmt = DBConn.createStatement();

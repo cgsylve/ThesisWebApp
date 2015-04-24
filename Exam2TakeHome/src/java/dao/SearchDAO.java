@@ -108,7 +108,7 @@ public class SearchDAO {
         
        
         
-        String query = "SELECT * FROM PROJECTTABLE"; 
+        String query = "SELECT * FROM SCHEDULE"; 
         
         ScheduledTime st; 
         ArrayList timeCollection = new ArrayList(); 
@@ -116,7 +116,7 @@ public class SearchDAO {
         try{
             //prep DB for queries
             
-            String myDB = "jdbc:derby://localhost:1527/LocalProjectDatabase";
+            String myDB = "jdbc:derby://localhost:1527/DemoTime";
             Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
             
             //load query
