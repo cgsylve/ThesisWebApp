@@ -9,11 +9,12 @@ import dao.SearchDAOImpl;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import model.LoginBean;
 import model.ProjectBean;
 import model.SearchBean;
 import model.Thesis;
 import model.UpdateBean;
+import model.Users;
+
 
 /**
  *
@@ -29,7 +30,8 @@ public class SearchController {
     SearchBean searchBean; 
     Thesis thesis; 
     String query; 
-   
+    private Users theModel; 
+    private SignInController siController; 
     UpdateBean updateBean; 
     ArrayList<Thesis> arry;
    
@@ -40,8 +42,9 @@ public class SearchController {
      searchBean = new SearchBean();
      arry = new ArrayList<>();
      searchDAO = new SearchDAOImpl();
-     
+     siController = new SignInController();
      updateBean = new UpdateBean();
+     theModel = new Users();
     }
 
     
@@ -100,14 +103,13 @@ public class SearchController {
         arry = searchDAO.searchProjects(searchType, searchTerm);
         searchBean.setThesisList(arry);
        
-        
-        return "searchResults.xhtml";
+        return "moo";
+        //return "searchResults.xhtml";
     }
     
     public String getMyProjects(){
-        String username = "cgsylve";
         
-        
+        String username = searchBean.getUserID(); 
         
         arry = searchDAO.searchMyProjects(username);
         searchBean.setThesisList(arry);
@@ -137,6 +139,50 @@ public class SearchController {
             
         
         
+    }
+    
+    public String showSimilar(){
+        
+        String searchTerm = searchBean.getSearchTerm();
+        String searchType = searchBean.getSearchType();
+        
+        String addTerm = searchBean.getSimilarKeyword();
+        String addCat = searchBean.getSimilarCatagory();
+        
+        arry = searchDAO.searchSimilarProjects(searchType, searchTerm, addTerm, addCat);
+        searchBean.setSimilarList(arry);
+        
+        
+        
+        return "doublemoo";
+    }
+
+    /**
+     * @return the siController
+     */
+    public SignInController getSiController() {
+        return siController;
+    }
+
+    /**
+     * @param siController the siController to set
+     */
+    public void setSiController(SignInController siController) {
+        this.siController = siController;
+    }
+
+    /**
+     * @return the theModel
+     */
+    public Users getTheModel() {
+        return theModel;
+    }
+
+    /**
+     * @param theModel the theModel to set
+     */
+    public void setTheModel(Users theModel) {
+        this.theModel = theModel;
     }
 
     

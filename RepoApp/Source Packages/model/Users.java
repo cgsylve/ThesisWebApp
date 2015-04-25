@@ -5,13 +5,14 @@
  */
 package model;
 
-import dao.StudentDAO;
-import dao.StudentDAOImpl;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Coty
  */
+
 public class Users {
     private String firstName;
     private String lastName;

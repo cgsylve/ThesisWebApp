@@ -6,7 +6,10 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -28,15 +31,38 @@ and open the template in the editor.
             </h:form>
         </div>
         
-        <h:form>
+        
+        
+<!--        <h:form>
             
+            Enter Username to get projects: <p:inputText value="#{searchController.searchBean.userID}"/>
            
             
             <h:commandButton id="searchButton" value="Get Your Projects" action="#{searchController.getMyProjects()}">
-                    
+                <f:ajax execute="searchButton" render="output"/>
             </h:commandButton>
             
-        </h:form>
+            
+            <table>
+                <tr>
+                    <th>Live Link</th>           
+                 </tr>
+                <ui:repeat id="output" var="elem" value="#{searchController.searchBean.thesisList}">
+                <tr>
+                    <td>#{elem.liveLink}</td>
+                    
+                </tr>
+
+                </ui:repeat>
+                
+            </table>
+            
+            Paste the LiveLink to begin updating the project. <p:inputText value="#{updateController.updateBean.liveLinkKey}"/>
+            <h:commandButton value="Update This Project" action="#{updateController.populateForm()}"/>
+            
+        
+            
+        </h:form>-->
         
         
     </h:body>
