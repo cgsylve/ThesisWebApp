@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -17,15 +18,17 @@ import javax.faces.bean.SessionScoped;
 public class UpdateBean {
     
     private String liveLinkKey; 
+    private ArrayList <Thesis> thesisList; 
     
-    private String courseNumber; 
-    private String liveLink;
-    private String keywordOne; 
-    private String committeeChair; 
-    private String semesterCompleted; 
-    private String studentName; 
-    private String dateCompleted;
 
+    
+    public UpdateBean(){
+        thesisList = new ArrayList();
+    }
+    
+    public UpdateBean(String liveLinkKey){
+        this.liveLinkKey = liveLinkKey; 
+    }
     /**
      * @return the liveLinkKey
      */
@@ -41,102 +44,21 @@ public class UpdateBean {
     }
 
     /**
-     * @return the courseNumber
+     * @return the thesisList
      */
-    public String getCourseNumber() {
-        return courseNumber;
+    public ArrayList <Thesis> getThesisList() {
+        return thesisList;
     }
 
     /**
-     * @param courseNumber the courseNumber to set
+     * @param thesisList the thesisList to set
      */
-    public void setCourseNumber(String courseNumber) {
-        this.courseNumber = courseNumber;
+    public void setThesisList(ArrayList <Thesis> thesisList) {
+        this.thesisList = thesisList;
     }
+    
+    
 
-    /**
-     * @return the liveLink
-     */
-    public String getLiveLink() {
-        return liveLink;
-    }
-
-    /**
-     * @param liveLink the liveLink to set
-     */
-    public void setLiveLink(String liveLink) {
-        this.liveLink = liveLink;
-    }
-
-    /**
-     * @return the keywordOne
-     */
-    public String getKeywordOne() {
-        return keywordOne;
-    }
-
-    /**
-     * @param keywordOne the keywordOne to set
-     */
-    public void setKeywordOne(String keywordOne) {
-        this.keywordOne = keywordOne;
-    }
-
-    /**
-     * @return the committeeChair
-     */
-    public String getCommitteeChair() {
-        return committeeChair;
-    }
-
-    /**
-     * @param committeeChair the committeeChair to set
-     */
-    public void setCommitteeChair(String committeeChair) {
-        this.committeeChair = committeeChair;
-    }
-
-    /**
-     * @return the semesterCompleted
-     */
-    public String getSemesterCompleted() {
-        return semesterCompleted;
-    }
-
-    /**
-     * @param semesterCompleted the semesterCompleted to set
-     */
-    public void setSemesterCompleted(String semesterCompleted) {
-        this.semesterCompleted = semesterCompleted;
-    }
-
-    /**
-     * @return the studentName
-     */
-    public String getStudentName() {
-        return studentName;
-    }
-
-    /**
-     * @param studentName the studentName to set
-     */
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    /**
-     * @return the dateCompleted
-     */
-    public String getDateCompleted() {
-        return dateCompleted;
-    }
-
-    /**
-     * @param dateCompleted the dateCompleted to set
-     */
-    public void setDateCompleted(String dateCompleted) {
-        this.dateCompleted = dateCompleted;
-    }
     
     
 }

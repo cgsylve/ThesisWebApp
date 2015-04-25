@@ -99,10 +99,33 @@ public class UpdateController {
         UpdateDAOImpl updateDAO = new UpdateDAOImpl();
         String key = updateBean.getLiveLinkKey();
         
-        initThesis = updateDAO.prepopulateUpdateForm(key);
-        thesisBean.setThesis(initThesis);
+        arry = updateDAO.prepopulateUpdateForm(key);
+        updateBean.setThesisList(arry);
         
         return "update.xhtml";
+    }
+    
+    public String updateDatabase(){
+        UpdateDAOImpl updateDAO = new UpdateDAOImpl();
+        String msg = ""; 
+        
+        String key = updateBean.getLiveLinkKey();
+        
+        String course = thesisBean.getCourseNumber();
+        String liveLink = thesisBean.getLiveLink();
+        String keyword = thesisBean.getKeywordOne();
+        String chair = thesisBean.getCommitteeChair();
+        String sem = thesisBean.getSemesterCompleted();
+        String stu = thesisBean.getStudentName();
+        String date = thesisBean.getDateCompleted();
+        int result = 0; 
+        
+        result = updateDAO.updateRecords(key, course, liveLink, keyword, chair, sem, stu, date);
+        
+        if (result == 1)
+            return msg = "Submitted";
+        else   
+            return msg = "Failed";
     }
 
     

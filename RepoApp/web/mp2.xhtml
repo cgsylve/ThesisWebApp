@@ -39,7 +39,7 @@ and open the template in the editor.
             </table>
             
             Paste the LiveLink to begin updating the project. <p:inputText value="#{updateController.updateBean.liveLinkKey}"/>
-            <p:button value="Update This Project" outcome="#{updateController.populateForm()}"/>
+            <h:commandButton value="Update This Project" action="#{updateController.populateForm()}"/>
             
         </h:form>
            

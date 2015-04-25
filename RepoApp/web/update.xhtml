@@ -9,7 +9,7 @@ and open the template in the editor.
       
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:w="http://xmlns.jcp.org/jsf">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -37,26 +37,26 @@ and open the template in the editor.
                 <h2 id="formHead">Update</h2>
                 <p:panelGrid columns="2">
                    
-                    <h:outputLabel for="stuName" value="Name: "/>
-                    <p:inputText id="stuName" value="#{updateController.thesisBean.thesis.studentName}"/>
-                    <h:outputLabel for="dateUploaded" value="Date Uploaded: "/>
-                    <p:inputText id="dateUploaded" value="#{updateController.thesisBean.thesis.dateCompleted}"/>
-                    <h:outputLabel for="courseNumber" value="Course Number: "/>
-                    <p:inputText id="courseNumber" value="#{updateController.thesisBean.thesis.courseNumber}"/>
-                    <h:outputLabel for="linkToProject" value="Link To Project"/>
-                    <p:inputText id="linkToProject" value="#{updateController.thesisBean.thesis.liveLink}"/>
-                    <h:outputLabel for="committeeChair" value="Committee Chair: "/>
-                    <p:inputText id="committeeChair" value="#{updateController.thesisBean.thesis.committeeChair}"/>
-                    <h:outputLabel for="semesterCompleted" value="Semester Completed: "/>
-                    <p:inputText id="semesterCompleted" value="#{updateController.thesisBean.thesis.semesterCompleted}"/>
-                    <h:outputLabel for="key1" value="Keyword 1: "/>
-                    <p:inputText id="key1" value="#{updateController.thesisBean.thesis.keywordOne}"/>
+                    <h:outputLabel for="stuName" value="Course Number: "/>
+                    <p:inputText id="stuName" value="#{updateController.thesisBean.courseNumber}"/>
+                    <h:outputLabel for="dateUploaded" value="Link To Project (LiveLink): "/>
+                    <p:inputText id="dateUploaded" value="#{updateController.thesisBean.liveLink}"/>
+                    <h:outputLabel for="courseNumber" value="Keyword: "/>
+                    <p:inputText id="courseNumber" value="#{updateController.thesisBean.keywordOne}"/>
+                    <h:outputLabel for="linkToProject" value="Committee Chair: "/>
+                    <p:inputText id="linkToProject" value="#{updateController.thesisBean.committeeChair}"/>
+                    <h:outputLabel for="committeeChair" value="Semester Completed: "/>
+                    <p:inputText id="committeeChair" value="#{updateController.thesisBean.semesterCompleted}"/>
+                    <h:outputLabel for="semesterCompleted" value="Student Name: "/>
+                    <p:inputText id="semesterCompleted" value="#{updateController.thesisBean.studentName}"/>
+                    <h:outputLabel for="key1" value="Date Completed: "/>
+                    <p:inputText id="key1" value="#{updateController.thesisBean.dateCompleted}"/>
                     
                  </p:panelGrid>
                 <div id="uploadFormFooter">
                     
                 <h:panelGrid columns="1" id="uploadButton">
-                    <h:commandButton value="Submit" action="#{searchController.updateMyProject()}"/>
+                    <h:commandButton value="Submit" action="#{updateController.updateDatabase()}"/>
                 </h:panelGrid>
                     
                 </div>
@@ -66,6 +66,44 @@ and open the template in the editor.
             Here you can create and submit your project. 
             <br/>
             Please fill out all keyword fields so that your project will be searchable.
+            
+        </div>
+        
+        <div id="existingInfo">
+            <br/>
+            Here is the existing info for the specified entry.
+            <ui:repeat var="elem" value="#{updateController.updateBean.thesisList}">
+                <br/>
+                <tr>    
+                    Course Number: <td>#{elem.courseNumber}</td>
+                </tr>
+                <br/>
+                <tr>
+                    Live Link: <td>#{elem.liveLink}</td>
+                </tr>
+                <br/>
+                <tr>
+                    Keyword: <td>#{elem.keywordOne}</td>
+                </tr>
+                <br/>
+                <tr>
+                    Committee Chair: <td>#{elem.committeeChair}</td>
+                </tr>
+                <br/>
+                <tr>
+                    Semester Completed: <td>#{elem.semesterCompleted}</td>
+                </tr>
+                <br/>
+                <tr>
+                    Student Name; <td>#{elem.studentName}</td>
+                </tr>
+                <br/>
+                <tr>
+                    Date Completed: <td>#{elem.dateCompleted}</td>
+                </tr>
+            
+         
+        </ui:repeat>
             
         </div>
         <div id="uploadFooter" class="footer">
