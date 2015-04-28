@@ -20,12 +20,7 @@ body{
     clear:both;
 }
 
-.footer{
-    position:absolute; 
-    bottom:20px; 
-    left:30px; 
-    clear:both; 
-}
+
 
 #uploadForm{
      
@@ -52,3 +47,4 @@ body{
    left:50%; 
    
 }
+

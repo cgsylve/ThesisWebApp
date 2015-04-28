@@ -109,12 +109,12 @@ public class SearchController {
     
     public String getMyProjects(){
         
-        String username = searchBean.getUserID(); 
+        String username = "cgsylve"; 
         
         arry = searchDAO.searchMyProjects(username);
         searchBean.setThesisList(arry);
         
-        return "mp2.xhtml";
+        return "mewtwo";
     }
     
     public String updateMyProject(){

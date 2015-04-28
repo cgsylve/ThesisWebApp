@@ -13,7 +13,7 @@ and open the template in the editor.
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet library="css" name="myProjects.css"  />
+        <h:outputStylesheet library="css" name="home.css"  />
     </h:head>
     <h:body>
         
@@ -22,47 +22,72 @@ and open the template in the editor.
         
         <div id="projectsNavbar" class="navbar">
             <h:form>
-            <h:panelGrid columns="4" id="navGrid" cellpadding="5">
-               <h:commandLink value="Home" style="text-decoration:none;color:#FFCC00;"/>
-               <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
-               <h:commandLink value="My Projects" action="myProjects.xhtml" style="text-decoration:none;color:#FFCC00;"/>
-               <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
-            </h:panelGrid>
+                <h:panelGrid columns="4" id="navGrid" cellpadding="5">
+                   <h:commandLink value="Home" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="My Projects" action="myProjects.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+                </h:panelGrid>
             </h:form>
         </div>
         
-        
-        
-<!--        <h:form>
-            
-            Enter Username to get projects: <p:inputText value="#{searchController.searchBean.userID}"/>
-           
-            
-            <h:commandButton id="searchButton" value="Get Your Projects" action="#{searchController.getMyProjects()}">
-                <f:ajax execute="searchButton" render="output"/>
-            </h:commandButton>
-            
-            
-            <table>
-                <tr>
-                    <th>Live Link</th>           
-                 </tr>
-                <ui:repeat id="output" var="elem" value="#{searchController.searchBean.thesisList}">
-                <tr>
-                    <td>#{elem.liveLink}</td>
-                    
-                </tr>
+        <div id="wrapper">
+            <div id="featuredThesis">
+                <h1 id ="featuredThesisHeader">Featured Thesis</h1>
 
-                </ui:repeat>
+                <div id="featuredThesisBody">
+                    Test thesis
+                    Info
+                    wOERJWEOIJFWOEIJFOWEIJFOWIEHJF
+                </div>
                 
-            </table>
+                
+                
+            </div> <!-- End featured thesis -->
             
-            Paste the LiveLink to begin updating the project. <p:inputText value="#{updateController.updateBean.liveLinkKey}"/>
-            <h:commandButton value="Update This Project" action="#{updateController.populateForm()}"/>
+            <div id="myProjects">
+                    <h:form>
+                        <h1 id="getYourProjectHeader">Get Your Projects</h1> Display the list of links to your project for viewing/editing. 
+                        <br/>
+                        <br/>
+                        <p:commandButton styleClass="button" id="searchButton" value="Get Your Projects" action="#{searchController.getMyProjects()}">
+                            <f:ajax execute="@form" render="output"/>
+                        </p:commandButton>
+                        <br/>
+                        <br/>
+                    </h:form>
+                
+                        <th><u><h2 id="yourProjectsLiveLink">Your Project</h2></u></th>
+                        
+                        <h:panelGroup id="output">
+                            
+                                <div id="repeatStyle">
+                                    <ui:repeat var="elem" value="#{searchController.searchBean.thesisList}">
+                                        <tr>
+                                            <td>#{elem.liveLink}</td>
+                                        </tr>
+                                        <br/>
+                                    </ui:repeat>
+                                </div>                                     
+                        <hr/>
+                        </h:panelGroup>
+                        
+                
+                        Paste the LiveLink to begin updating the project.
+                        <h:form>
+                        <br/>
+                        <p:inputText value="#{updateController.updateBean.liveLinkKey}"/>
+                        <p:commandButton styleClass = "subButton" value="Update This Project" action="#{updateController.populateForm()}"/>
+                        </h:form>               
+                        
+                    
+                    
+            </div> <!-- End My Projects --> 
             
+            
+        </div> <!-- End wrapper -->
         
-            
-        </h:form>-->
+
         
         
     </h:body>

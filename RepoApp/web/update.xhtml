@@ -13,6 +13,7 @@ and open the template in the editor.
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="update.css"  />
     </h:head>
     <h:body>
         
@@ -23,7 +24,7 @@ and open the template in the editor.
             <div id="theNav">
                 <h:form>
             <h:panelGrid columns="4" id="navGrid" cellpadding="5">
-               <h:commandLink value="Home" style="text-decoration:none;color:#FFCC00;"/>
+               <h:commandLink value="Home" action="home.xhtml" style="text-decoration:none;color:#FFCC00;"/>
                <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
                <h:commandLink value="My Projects" action="myProjects.xhtml" style="text-decoration:none;color:#FFCC00;"/>
                <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
@@ -32,7 +33,8 @@ and open the template in the editor.
             </div>
         </div>
         
-        <div id="uploadForm">
+        <div id="wrapper">
+        <div id="updateForm">
             <h:form>
                 <h2 id="formHead">Update</h2>
                 <p:panelGrid columns="2">
@@ -53,25 +55,22 @@ and open the template in the editor.
                     <p:inputText id="key1" value="#{updateController.thesisBean.dateCompleted}"/>
                     
                  </p:panelGrid>
-                <div id="uploadFormFooter">
+                
+                <div id="updateFormFooter">
                     
-                <h:panelGrid columns="1" id="uploadButton">
-                    <h:commandButton value="Submit" action="#{updateController.updateDatabase()}"/>
-                </h:panelGrid>
+                
+                    <h:commandButton styleClass="button" id="updateButton" value="Submit" action="#{updateController.updateDatabase()}"/>
+                
                     
                 </div>
             </h:form>
         </div>
-        <div id="uploadInfo">
-            Here you can create and submit your project. 
-            <br/>
-            Please fill out all keyword fields so that your project will be searchable.
-            
-        </div>
+        
         
         <div id="existingInfo">
             <br/>
-            Here is the existing info for the specified entry.
+            <h3 id="existingInfoHeader">Here is the existing info for the specified entry.</h3>
+            <div id="existingInfoInfo">
             <ui:repeat var="elem" value="#{updateController.updateBean.thesisList}">
                 <br/>
                 <tr>    
@@ -104,7 +103,8 @@ and open the template in the editor.
             
          
         </ui:repeat>
-            
+            </div>
+        </div>
         </div>
         <div id="uploadFooter" class="footer">
             <p>
