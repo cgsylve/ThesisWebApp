@@ -57,7 +57,7 @@ and open the template in the editor.
                 <h:panelGrid columns="1" id="uploadButton">
                     Choose your projet for upload.
                     <p:growl id="messages" showDetail="true" />
-                    <p:fileUpload value="" mode="simple"/>
+                    <p:fileUpload fileUploadListener="#{fileUploadController.upload}" sizeLimit="1000000"/>
                     <p:commandButton value="Submit" ajax="false" disabled="false" />
                 </h:panelGrid>
                 </div>
