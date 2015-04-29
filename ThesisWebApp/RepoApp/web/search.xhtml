@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="search.css"  />        
+    </h:head>
+    <h:body>
+        <div id="searchNavbar" class="navbar">
+            <h:form>
+            <h:panelGrid columns="4" id="navGrid" cellpadding="5">
+               <h:commandLink value="Home" action="home.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+               <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+               <h:commandLink value="My Projects" action="myProjects.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+               <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+            </h:panelGrid>
+            </h:form>
+        </div>
+        <hr/>
+        <h1>Search</h1>
+        <h:form id="myForm">
+        <h:panelGrid columns="5" cellpadding="5" id="searchField">
+            <p:selectOneMenu value="#{searchController.searchBean.searchType}">
+                    <f:selectItem itemValue="STUDENTNAME" itemLabel="Student Name" />
+                    <f:selectItem itemValue="DATECOMPLETED" itemLabel="Date Completed" />
+                    <f:selectItem itemValue="COURSENUMBER" itemLabel="Class Number" />
+                    <f:selectItem itemValue="SEMESTERCOMPLETED" itemLabel="Semester" />
+                    <f:selectItem itemValue="KEYWORDONE" itemLabel="Keyword" />
+                </p:selectOneMenu>
+            
+                <h:outputLabel for="searchTerm" value="Search Term: "/>
+                <p:inputText id="searchTerm" value="#{searchController.searchBean.searchTerm}"/>
+                <h:commandButton id="searchButton" value="Submit" action="#{searchController.searchDatabase()}">
+                    <f:ajax event="action" execute="@form" render="resultOutput"/>
+                </h:commandButton>
+                
+                <p>Here you can search via Name, Date Uploaded, Class, Semester, or by a Keyword.</p> <!-- NULL POINTER EXCEPTION OCCURS WITH THIS OUTCOME -->
+         </h:panelGrid>
+         </h:form>
+        
+        <hr/>
+        
+        
+        
+        
+        
+        
+        <h1>Search Results</h1>
+        <br/>
+        
+        
+        <h:panelGroup id="resultOutput">
+            <table>
+            <tr>
+            <th>Course Number</th>
+            <th>Live Link</th>
+            <th>Keyword</th>
+            <th>Committee Chair</th>
+            <th>Semester Completed</th>
+            <th>Student Name</th>
+            <th>Date Completed</th>
+            </tr>
+            
+        <ui:repeat var="elem" value="#{searchController.searchBean.thesisList}">
+        
+            
+        <tr>
+            <td>#{elem.courseNumber}</td>
+            <td>#{elem.liveLink}</td>
+            <td>#{elem.keywordOne}</td>
+            <td>#{elem.committeeChair}</td>
+            <td>#{elem.semesterCompleted}</td>
+            <td>#{elem.studentName}</td>
+            <td>#{elem.dateCompleted}</td>
+         </tr>
+            
+     </ui:repeat>
+            </table>
+        </h:panelGroup>
+        
+        <br/>
+        <hr/>
+        <h1>Show Similar Projects - Refine Your Search</h1>
+        
+        <h:form id="null">
+        <h:panelGrid columns="5" cellpadding="5" id="searchField">
+            <p:selectOneMenu value="#{searchController.searchBean.similarCatagory}">
+                    <f:selectItem itemValue="STUDENTNAME" itemLabel="Student Name" />
+                    <f:selectItem itemValue="DATECOMPLETED" itemLabel="Date Completed" />
+                    <f:selectItem itemValue="COURSENUMBER" itemLabel="Class Number" />
+                    <f:selectItem itemValue="SEMESTERCOMPLETED" itemLabel="Semester" />
+                    <f:selectItem itemValue="KEYWORDONE" itemLabel="Keyword" />
+                </p:selectOneMenu>
+            
+                <h:outputLabel for="searchTerm" value="Search Term: "/>
+                <p:inputText id="searchTerm" value="#{searchController.searchBean.similarKeyword}"/>
+                <h:commandButton id="searchButton" value="Submit" action="#{searchController.showSimilar()}">
+                    <f:ajax execute="null" render="output"/>
+                </h:commandButton>
+                
+                
+         </h:panelGrid>
+         
+        <br/>
+       
+            <h:panelGroup id="output">
+                    <table>
+                        <tr>
+                            <th>Course Number</th>
+                            <th>Live Link</th>
+                            <th>Keyword</th>
+                            <th>Committee Chair</th>
+                            <th>Semester Completed</th>
+                            <th>Student Name</th>
+                            <th>Date Completed</th>
+                        </tr>
+                        
+                <ui:repeat var="elem" value="#{searchController.searchBean.similarList}">
+                    
+                        <tr>
+                            <td>#{elem.courseNumber}</td>
+                            <td>#{elem.liveLink}</td>
+                            <td>#{elem.keywordOne}</td>
+                            <td>#{elem.committeeChair}</td>
+                            <td>#{elem.semesterCompleted}</td>
+                            <td>#{elem.studentName}</td>
+                            <td>#{elem.dateCompleted}</td>
+                        </tr>
+             </ui:repeat>
+            </table>
+            </h:panelGroup>
+            
+        </h:form>
+        
+        
+        <div id="uploadFooter" class="footer">
+            <p>
+                Problems? Email the developer at cgsylve@ilstu.edu
+            </p>
+        </div>
+          
+    </h:body> 
+</html>
