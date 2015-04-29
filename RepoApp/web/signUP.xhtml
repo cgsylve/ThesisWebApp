@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Sign Up!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body style="background-color:#323232; height:100%; width:100%">
+        
+        
+        <div style="position:absolute; background-color:white; border-radius:15px; right:35%; padding:25px; opacity:0.7; height:68%; width:27%">
+        </div>
+        
+        <div style="font-family:Source Sans Pro; position:absolute; border-radius:15px; right:35%; padding:23px">
+            <h2 style="padding-left:33%">Sign Up</h2>
+        <h:form>
+            
+                <h:panelGrid columns="2" id="signupPanelGrid" cellpadding="5">
+                    
+                
+                <h:outputLabel for="fName" value="First Name:"/>
+                <p:inputText id="fName" value="#{signUpController.theModel.firstName}"/>
+                <h:outputLabel for="lName" value="Last Name: "/>
+                <p:inputText id="lName" value="#{signUpController.theModel.lastName}"/>
+                <h:outputLabel for="usernameSignUp" value="Username: "/>
+                <p:inputText id="usernameSignUp" value="#{signUpController.theModel.userID}"/>
+                
+                <h:outputLabel for="pwd1" value="Password: " />
+                <p:password id="pwd1" match="pwd2" label="Password 1" required="true" value="#{signUpController.theModel.password}" />
+ 
+                <h:outputLabel for="pwd2" value="Confirm Password: " />
+                <p:password id="pwd2" label="Password 2" required="true" value="#{signUpController.theModel.password2}"/>
+                
+                <h:outputLabel for="email" value="Email: "/>              
+                <p:inputText id="email" value="#{signUpController.theModel.email}"/>
+                <h:outputLabel for="secQuestion" value="Security Question: "/>
+                <p:inputText id="secQuestion" value="#{signUpController.theModel.secQ}"/>
+                <h:outputLabel for="secAnswer" value="Security Answer: "/>
+                <p:inputText id="secAnswer" value="#{signUpController.theModel.secA}"/>
+                <h:outputLabel for="reason" value="Reason for account: "/>
+                <p:inputTextarea id="reason" value="#{signUpController.theModel.reason}"/>
+                <p:commandButton id="signupSubmitButton" value="Submit" action="#{signUpController.createUser()}" icon="fa-arrow-circle-o-right"/>           
+            </h:panelGrid>
+           
+        </h:form>
+        </div>
+        <div style="background-color:graytext ; position:absolute; left:0px; bottom:0px; height:10%; width:100%">
+            
+            <p style="color:white">
+                Problems? Email the developer at cgsylve@ilstu.edu
+            </p>
+            
+        </div>
+    </body>
+</html>

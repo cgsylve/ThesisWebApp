@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="home.css"  />
+    </h:head>
+    <h:body>
+        
+        
+        
+        
+        <div id="projectsNavbar" class="navbar">
+            <h:form>
+                <h:panelGrid columns="4" id="navGrid" cellpadding="5">
+                   <h:commandLink value="Home" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="My Projects" action="myProjects.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+                </h:panelGrid>
+            </h:form>
+        </div>
+        
+        <div id="wrapper">
+            <div id="featuredThesis">
+                <h1 id ="featuredThesisHeader">Featured Thesis</h1>
+
+                <div id="featuredThesisBody">
+                    Test thesis
+                    Info
+                    wOERJWEOIJFWOEIJFOWEIJFOWIEHJF
+                </div>
+                
+                
+                
+            </div> <!-- End featured thesis -->
+            
+            <div id="myProjects">
+                    <h:form>
+                        <h1 id="getYourProjectHeader">Get Your Projects</h1> Display the list of links to your project for viewing/editing. 
+                        <br/>
+                        <br/>
+                        <h:commandButton styleClass="button" id="searchButton" value="Get Your Projects" action="#{searchController.getMyProjects()}">
+                            <f:ajax execute="@form" render="output"/>
+                        </h:commandButton>
+                        <br/>
+                        <br/>
+                    </h:form>
+                
+                        <th><u><h2 id="yourProjectsLiveLink">Your Project</h2></u></th>
+                        
+                        <h:panelGroup id="output">
+                            
+                                <div id="repeatStyle">
+                                    <ui:repeat var="elem" value="#{searchController.searchBean.thesisList}">
+                                        <tr>
+                                            <td>#{elem.liveLink}</td>
+                                        </tr>
+                                        <br/>
+                                    </ui:repeat>
+                                </div>                                     
+                        <hr/>
+                        </h:panelGroup>
+                        
+                
+                        Paste the LiveLink to begin updating the project.
+                        <h:form>
+                        <br/>
+                        <p:inputText value="#{updateController.updateBean.liveLinkKey}"/>
+                        <p:commandButton styleClass = "subButton" value="Update This Project" action="#{updateController.populateForm()}"/>
+                        </h:form>               
+                        
+                    
+                    
+            </div> <!-- End My Projects --> 
+            
+            
+        </div> <!-- End wrapper -->
+        
+
+        
+        
+    </h:body>
+</html>
