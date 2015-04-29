@@ -35,23 +35,23 @@ and open the template in the editor.
                 <p:panelGrid columns="2">
                    
                     <h:outputLabel for="stuName" value="Name: "/>
-                    <p:inputText id="stuName" value="#{FileUploadController.uBean.studentName}"/>
-                    <h:outputLabel for="dateUploaded" value="#{FileUploadController.uBean.dateCompleted}"/>
+                    <p:inputText id="stuName" value="#{fileUploadController.uBean.studentName}"/>
+                    <h:outputLabel for="dateUploaded" value="#{fileUploadController.uBean.dateCompleted}"/>
                     <p:inputText id="dateUploaded" value="dateUploadedPrefilled"/>
                     <h:outputLabel for="courseNumber" value="Course Number: "/>
-                    <p:inputText id="courseNumber" value="#{FileUploadController.uBean.courseumber}"/>
+                    <p:inputText id="courseNumber" value="#{fileUploadController.uBean.courseNumber}"/>
                     <h:outputLabel for="linkToProject" value="Link To Project"/>
                     <p:inputText id="linkToProject" value="Leave this Blank"/>
                     <h:outputLabel for="committeeChair" value="Committee Chair: "/>
-                    <p:inputText id="committeeChair" value="#{FileUploadController.uBean.committeeChair}"/>
+                    <p:inputText id="committeeChair" value="#{fileUploadController.uBean.committeeChair}"/>
                     <h:outputLabel for="semesterCompleted" value="Semester Completed: "/>
-                    <p:inputText id="semesterCompleted" value="#{FileUploadController.uBean.semesterComplete}"/>
+                    <p:inputText id="semesterCompleted" value="#{fileUploadController.uBean.semesterComplete}"/>
                     <h:outputLabel for="key1" value="Keyword 1: "/>
-                    <p:inputText id="key1" value="#{FileUploadController.uBean.keyWordDone}"/>
+                    <p:inputText id="key1" value="#{fileUploadController.uBean.keyWordDone}"/>
                  </p:panelGrid>
                 <div id="uploadFormFooter">
                 <h:panelGrid columns="1" id="uploadButton">
-                    Choose your projet for upload.
+                    Choose your project for upload.
                     <p:growl id="messages" showDetail="true" />
                     <p:fileUpload fileUploadListener="#{fileUploadController.uploadFile}" sizeLimit="1000000"/>
                     <p:commandButton value="Submit" ajax="false" disabled="false" />

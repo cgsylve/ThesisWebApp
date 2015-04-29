@@ -43,7 +43,7 @@ public class FileUploadController {
         try {
             uBean.setLiveLink(returnFile(event.getFile().getFileName(), event.getFile().getInputstream()));
             UploadDAOImpl upDAO = new UploadDAOImpl();
-            upDAO.updateRecords(uBean);
+            upDAO.updateRecords(getuBean());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,5 +121,19 @@ public class FileUploadController {
      */
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+
+    /**
+     * @return the uBean
+     */
+    public UploadBean getuBean() {
+        return uBean;
+    }
+
+    /**
+     * @param uBean the uBean to set
+     */
+    public void setuBean(UploadBean uBean) {
+        this.uBean = uBean;
     }
 }
