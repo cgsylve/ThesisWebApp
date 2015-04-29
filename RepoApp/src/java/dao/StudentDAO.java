@@ -13,9 +13,14 @@ import model.Users;
  */
 public interface StudentDAO {
     public ArrayList findAll();
+    public ArrayList findAllPending();
     public ArrayList findloginSTUID(String aSTUID);
     public ArrayList selectLoginFromStudent(String query);
     public boolean exist(String aSTUID);
+    public boolean pendingUserExists(String userID);
     public ArrayList findBySTUID(String aSTUID);
+    public ArrayList findPendBySTUID(String aSTUID);
     public int createUser(Users user);
+    public int pendingToUser(Users user);
+    public boolean removePendingUser(Users pendingUser);
 }

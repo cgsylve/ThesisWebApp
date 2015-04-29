@@ -25,6 +25,12 @@ public class StudentDAOImpl implements StudentDAO{
        return aStudentCollection;
     }
     
+    public ArrayList findAllPending() {
+       String query = "SELECT * FROM CGSYLVE_SP2015_PROJECT353.PENDINGUSERS";
+       ArrayList aStudentCollection = selectProfilesFromDB(query);
+       return aStudentCollection;
+    }
+    
     private ArrayList selectProfilesFromDB(String query) {
         ArrayList aStudentCollection = new ArrayList();
         Connection DBConn = null;
@@ -158,6 +164,15 @@ public class StudentDAOImpl implements StudentDAO{
         ArrayList aStudentCollection = selectProfilesFromDB(query);
         return aStudentCollection;
     }
+    
+     @Override
+    public ArrayList findPendBySTUID(String aSTUID) {
+       String query = "SELECT * FROM CGSYLVE_SP2015_PROJECT353.PENDINGUSERS ";
+        query += "WHERE userID = '" + aSTUID + "'";
+
+        ArrayList aStudentCollection = selectProfilesFromDB(query);
+        return aStudentCollection;
+    }
 
     @Override
     public int createUser(Users user) {
@@ -196,5 +211,101 @@ public class StudentDAOImpl implements StudentDAO{
 
         // if insert is successful, rowCount will be set to 1 (1 row inserted successfully). Else, insert failed.
         return rowCount;
+    }
+
+    @Override
+    public boolean pendingUserExists(String userID) {
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/cgsylve_Sp2015_RepoApp";
+            Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+
+            String queryCheck = "SELECT * FROM CGSYLVE_SP2015_PROJECT353.PENDINGUSERS WHERE userID = '" + userID + "'";
+            Statement st = DBConn.createStatement();
+            ResultSet rs = st.executeQuery(queryCheck); //Check in PendingUsers table
+            if (rs.next()) {
+                DBConn.close();
+               return true;
+            }
+            
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return false;
+    }
+
+    @Override
+    public int pendingToUser(Users user) {
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+
+        int rowCount = 0;
+        try {
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/cgsylve_Sp2015_RepoApp";
+            Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+            String insertString;
+            Statement stmt = DBConn.createStatement();
+            insertString = "INSERT INTO CGSYLVE_SP2015_PROJECT353.USERS VALUES ('"
+                    + user.getUserID()
+                    + "','" + user.getPassword()
+                    + "','" + user.getFirstName()
+                    + "','" + user.getLastName()
+                    + "','" + user.getEmail()
+                    + "','" + user.getSecQ()
+                    + "','" + user.getSecA()
+                    + "','" + user.getReason()
+                    + "','" + user.getAdmin()
+                    + "')";
+
+            rowCount = stmt.executeUpdate(insertString);
+            System.out.println("insert string =" + insertString);
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        // if insert is successful, rowCount will be set to 1 (1 row inserted successfully). Else, insert failed.
+        return rowCount;
+    }
+
+    @Override
+    public boolean removePendingUser(Users pendingUser) {
+        boolean success = false;
+        int returnInt = 0;
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+        try {
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/cgsylve_Sp2015_RepoApp";
+            Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+            String sql;
+            Statement stmt = DBConn.createStatement();
+            sql = "DELETE FROM CGSYLVE_SP2015_PROJECT353.PENDINGUSERS"
+                    + " WHERE userID = '" + pendingUser.getUserID() + "'";
+
+            returnInt = stmt.executeUpdate(sql);
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        if(returnInt > 0)
+            return success = true;
+        else
+            return success;
     }
 }
