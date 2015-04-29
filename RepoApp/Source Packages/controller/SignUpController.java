@@ -65,7 +65,7 @@ public class SignUpController {
             int rowCount = aProfileDAO.createUser(theModel); // Doing anything with the object after this?
             if (rowCount == 1){
                 //JavaMailApp.sendMail(theModel);
-                return "home.xhtml?faces-redirect=true";
+                return "waitingForAdmin.xhtml?faces-redirect=true";
             }
             else
                 return(null);

@@ -13,6 +13,8 @@ import javax.faces.bean.SessionScoped;
  * @author Coty
  */
 
+@ManagedBean
+@SessionScoped
 public class Users {
     private String firstName;
     private String lastName;

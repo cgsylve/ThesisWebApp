@@ -9,6 +9,7 @@ import dao.SearchDAOImpl;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 import model.ProjectBean;
 import model.SearchBean;
 import model.Thesis;
@@ -30,11 +31,11 @@ public class SearchController {
     SearchBean searchBean; 
     Thesis thesis; 
     String query; 
-    private Users theModel; 
-    private SignInController siController; 
+    SignInController siController; 
     UpdateBean updateBean; 
     ArrayList<Thesis> arry;
-   
+    
+    
     
     
     public SearchController() {
@@ -44,7 +45,7 @@ public class SearchController {
      searchDAO = new SearchDAOImpl();
      siController = new SignInController();
      updateBean = new UpdateBean();
-     theModel = new Users();
+     
     }
 
     
@@ -171,19 +172,6 @@ public class SearchController {
         this.siController = siController;
     }
 
-    /**
-     * @return the theModel
-     */
-    public Users getTheModel() {
-        return theModel;
-    }
-
-    /**
-     * @param theModel the theModel to set
-     */
-    public void setTheModel(Users theModel) {
-        this.theModel = theModel;
-    }
-
+    
     
 }
