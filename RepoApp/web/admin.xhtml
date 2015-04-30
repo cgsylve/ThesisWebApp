@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -18,7 +19,7 @@ and open the template in the editor.
         <div id="searchNavbar" class="navbar">
             <h:form>
             <h:panelGrid columns="5" id="navGrid" cellpadding="5">
-                   <h:commandLink value="Home" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="Home" action="home.xhtml" style="text-decoration:none;color:#FFCC00;"/>
                    <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
                    <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
                    <h:commandLink value="Admin" action="admin.xhtml" style="text-decoration:none;color:#FFCC00;" rendered="#{signInController.isAdmin()}" />
@@ -27,54 +28,58 @@ and open the template in the editor.
             </h:form>
         </div>
         <hr/>
-        <h1>Users Pending Approval</h1>
-        <h:form>
-            <h:outputLabel id="choosePendingUser" value="Input User ID: "/>
-            <p:inputText id="userID" value="#{adminController.userID}"/>
-            <h:commandButton id="approveUser" value="Approve User" action="#{adminController.approveUser()}" /><p>  </p>
-            <h:commandButton id="approveAdminUser" value="Approve User and Make Admin" action="#{adminController.approveAdminUser()}" />
-            <table>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>User ID</th>
-             </tr>
-                <ui:repeat var="elem" value="#{adminController.populatePendingUserTable()}">
-
-            <tr>
-                <td>#{elem.firstName}</td>
-                <td>#{elem.lastName}</td>
-                <td>#{elem.userID}</td>
-             </tr>
-                </ui:repeat>
-            </table>
-            <h1>Approved Users</h1>
-            <table>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>User ID</th>
-                <th>Admin</th>
-             </tr>
-                <ui:repeat var="elem" value="#{adminController.populateUserTable()}">
-
-            <tr>
-                <td>#{elem.firstName}</td>
-                <td>#{elem.lastName}</td>
-                <td>#{elem.userID}</td>
-                <td>#{elem.admin}</td>
-             </tr>
-                </ui:repeat>
-            </table>
+        <h:form id="form">
+            <p:dataTable id="pendingDT" var="user" value="#{adminController.populatePendingUserTable()}">
+                <f:facet name="header">
+                    Users Pending Approval
+                </f:facet>
+                <p:column headerText="User ID">
+                    <h:outputText value="#{user.userID}" />
+                </p:column>
+                <p:column headerText="First Name">
+                    <h:outputText value="#{user.firstName}" />
+                </p:column>
+                <p:column headerText="Last Name">
+                    <h:outputText value="#{user.lastName}" />
+                </p:column>
+                <p:column headerText="email">
+                    <h:outputText value="#{user.email}" />
+                </p:column>
+                <p:column>
+                     <p:commandButton id="approveUser" update=":form" value="Approve User" action="#{adminController.approveUser()}" title="Approve">
+                         <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            
+            <hr/>
+            
+            <p:dataTable id="usersDT" var="user" value="#{adminController.populateUserTable()}">
+               <f:facet name="header">
+                   Current Approved Users
+               </f:facet>
+               <p:column headerText="User ID">
+                   <h:outputText value="#{user.userID}" />
+               </p:column>
+               <p:column headerText="First Name">
+                   <h:outputText value="#{user.firstName}" />
+               </p:column>
+               <p:column headerText="Last Name">
+                   <h:outputText value="#{user.lastName}" />
+               </p:column>
+               <p:column headerText="email">
+                   <h:outputText value="#{user.email}" />
+               </p:column>
+                <p:column headerText="admin">
+                   <h:outputText value="#{user.admin}" />
+               </p:column>
+               <p:column>
+                    <p:commandButton id="removeUser" value="Remove User" action="#{adminController.removeUser()}" title="Remove">
+                        <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
+                   </p:commandButton>
+               </p:column>
+           </p:dataTable>
+            
         </h:form>
-        
-        <h1>Dashboard</h1>
-        <table>
-            <tr>
-                <th>Most Downloaded Projects</th>
-                <th>Most Searched Projects</th>
-                <th></th>
-            </tr>
-        </table>
     </body>
 </html>

@@ -24,7 +24,7 @@ and open the template in the editor.
             <div id="theNav">
                 <h:form>
                 <h:panelGrid columns="5" id="navGrid" cellpadding="5">
-                   <h:commandLink value="Home" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="Home" action="home.xhtml" style="text-decoration:none;color:#FFCC00;"/>
                    <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
                    <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
                    <h:commandLink value="Admin" action="admin.xhtml" style="text-decoration:none;color:#FFCC00;" rendered="#{signInController.isAdmin()}" />

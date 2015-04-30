@@ -23,6 +23,11 @@ import model.Users;
 public class AdminController {
     private Users pendingUser;
     private String userID;
+    private ArrayList<Users> users;
+    
+    public ArrayList<Users> getUsers(){
+        return users;
+    }
     
     public String getUserID(){
         return userID;
@@ -42,12 +47,12 @@ public class AdminController {
              email, secQ, secA, reason, isAdmin);
     }
     
-    public Users getUser(){
+    public Users getPendingUser(){
         return pendingUser;
     }
     
-    public void setUser(Users pUser){
-        pendingUser = pUser;
+    public void setPendingUser(Users pendingUser){
+        this.pendingUser = pendingUser;
     }
     
     public static boolean pendingUserExists(String userID){
@@ -61,10 +66,10 @@ public class AdminController {
         return pendingUsers;
     }
     
-    public ArrayList populateUserTable(){
+    public ArrayList<Users> populateUserTable(){
         StudentDAO aProfileDAO = new StudentDAOImpl();
-        ArrayList<Users> users = aProfileDAO.findAll();
-        return users;
+        ArrayList<Users> users1 = aProfileDAO.findAll();
+        return users1;
     }
     
     public Users getPendingUser(String userID){
@@ -77,8 +82,8 @@ public class AdminController {
     public String approveUser(){
         //need to move user to Users table
         StudentDAO aProfileDAO = new StudentDAOImpl(); 
-        ArrayList<Users> arrL = aProfileDAO.findPendBySTUID(userID);
-        pendingUser = arrL.get(0);
+//        ArrayList<Users> arrL = aProfileDAO.findPendBySTUID(userID);
+//        pendingUser = arrL.get(0);
         boolean success = aProfileDAO.removePendingUser(pendingUser);
         if(success){
             int rowCount = aProfileDAO.pendingToUser(pendingUser); 
@@ -101,6 +106,10 @@ public class AdminController {
         
         //need to send confirmation email that the users accoutn ahs been approved
         return null;
+    }
+    
+    public void removeUser(){
+        System.out.println("To Do!");
     }
     
     
