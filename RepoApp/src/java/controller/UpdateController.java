@@ -6,6 +6,7 @@
 package controller;
 
 import dao.UpdateDAOImpl;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,7 +21,7 @@ import model.UpdateBean;
 
 @ManagedBean
 @SessionScoped
-public class UpdateController {
+public class UpdateController implements Serializable{
     
     private UpdateBean updateBean; 
     private ArrayList<Thesis> arry; 

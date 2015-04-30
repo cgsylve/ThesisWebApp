@@ -5,40 +5,45 @@
  */
 package model;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  *
  * @author Huan_Nguyen
  */
+@SessionScoped
+@ManagedBean
 public class UploadBean {
     private String courseNumber;
     private String liveLink;
-    private String keyWordDone;
+    private String keyWordOne;
     private String committeeChair;
     private String semesterComplete;
     private String studentName;
     private String dateCompleted;
-    private String UserID;
+    private String userID;
     
     public UploadBean() {
         String courseNumber = "";
         String liveLink = "";
-        String keyWordDone = "";
+        String keyWordOne = "";
         String committeeChair = "";
         String semesterComplete = "";
         String studentName = "";
         String dateCompleted = "";
-        String UserID = "";
+        String userID = "";
     }
     
-    public UploadBean(String courseNumber, String liveLink, String keyWordDone, String committeeChair,  String semesterComplete, String studentName, String dateCompleted, String UserID) {
+    public UploadBean(String courseNumber, String liveLink, String keyWordOne, String committeeChair,  String semesterComplete, String studentName, String dateCompleted, String userID) {
         this.courseNumber = courseNumber;
         this.liveLink = liveLink;
-        this.keyWordDone = keyWordDone;
+        this.keyWordOne = keyWordOne;
         this.committeeChair = committeeChair;
         this.semesterComplete = semesterComplete;
         this.studentName = studentName;
         this.dateCompleted = dateCompleted;
-        this.UserID = UserID;
+        this.userID = userID;
     }
 
     /**
@@ -72,15 +77,15 @@ public class UploadBean {
     /**
      * @return the keyWordDone
      */
-    public String getKeyWordDone() {
-        return keyWordDone;
+    public String getKeyWordOne() {
+        return keyWordOne;
     }
 
     /**
      * @param keyWordDone the keyWordDone to set
      */
-    public void setKeyWordDone(String keyWordDone) {
-        this.keyWordDone = keyWordDone;
+    public void setKeyWordOne(String keyWordDone) {
+        this.keyWordOne = keyWordDone;
     }
 
     /**
@@ -143,13 +148,13 @@ public class UploadBean {
      * @return the UserID
      */
     public String getUserID() {
-        return UserID;
+        return userID;
     }
 
     /**
      * @param UserID the UserID to set
      */
     public void setUserID(String UserID) {
-        this.UserID = UserID;
+        this.userID = UserID;
     }
 }

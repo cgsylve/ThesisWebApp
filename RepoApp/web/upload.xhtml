@@ -31,31 +31,33 @@ and open the template in the editor.
         </div>
         
         <div id="uploadForm">
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <h2 id="formHead">Upload</h2>
                 <p:panelGrid columns="2">
-                   
+                    
                     <h:outputLabel for="stuName" value="Name: "/>
-                    <p:inputText id="stuName" value="#{fileUploadController.uBean.studentName}"/>
-                    <h:outputLabel for="dateUploaded" value="#{fileUploadController.uBean.dateCompleted}"/>
-                    <p:inputText id="dateUploaded" value="dateUploadedPrefilled"/>
+                    <p:inputText id="stuName" value="#{fileUploadController.upBean.studentName}"/>
+                    <h:outputLabel for="dateUploaded" value="Date Completed: "/>
+                    <p:inputText id="dateUploaded" value="#{fileUploadController.upBean.dateCompleted}"/>
                     <h:outputLabel for="courseNumber" value="Course Number: "/>
-                    <p:inputText id="courseNumber" value="#{fileUploadController.uBean.courseNumber}"/>
+                    <p:inputText id="courseNumber" value="#{fileUploadController.upBean.courseNumber}"/>
                     <h:outputLabel for="linkToProject" value="Link To Project"/>
                     <p:inputText id="linkToProject" value="Leave this Blank"/>
                     <h:outputLabel for="committeeChair" value="Committee Chair: "/>
-                    <p:inputText id="committeeChair" value="#{fileUploadController.uBean.committeeChair}"/>
+                    <p:inputText id="committeeChair" value="#{fileUploadController.upBean.committeeChair}"/>
                     <h:outputLabel for="semesterCompleted" value="Semester Completed: "/>
-                    <p:inputText id="semesterCompleted" value="#{fileUploadController.uBean.semesterComplete}"/>
+                    <p:inputText id="semesterCompleted" value="#{fileUploadController.upBean.semesterComplete}"/>
                     <h:outputLabel for="key1" value="Keyword 1: "/>
-                    <p:inputText id="key1" value="#{fileUploadController.uBean.keyWordDone}"/>
+                    <p:inputText id="key1" value="#{fileUploadController.upBean.keyWordOne}"/>
+                    <h:outputLabel for="userID" value="User ID: "/>
+                    <p:inputText id="key1" value="#{fileUploadController.upBean.userID}"/>
                  </p:panelGrid>
                 <div id="uploadFormFooter">
                 <h:panelGrid columns="1" id="uploadButton">
                     Choose your project for upload.
                     <p:growl id="messages" showDetail="true" />
-                    <p:fileUpload fileUploadListener="#{fileUploadController.uploadFile}" sizeLimit="1000000"/>
-                    <p:commandButton value="Submit" ajax="false" disabled="false" />
+                    <p:fileUpload value="#{fileUploadController.theFile}" mode="simple" sizeLimit="1000000"/>
+                    <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadController.uploadFile}" />
                 </h:panelGrid>
                 </div>
             </h:form>

@@ -6,6 +6,7 @@
 package controller;
 
 import dao.SearchDAOImpl;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,7 +25,7 @@ import model.Users;
 
 @ManagedBean
 @SessionScoped
-public class SearchController {
+public class SearchController implements Serializable{
     
     ProjectBean projectBean; 
     SearchDAOImpl searchDAO; 
