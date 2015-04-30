@@ -23,4 +23,5 @@ public interface StudentDAO {
     public int createUser(Users user);
     public int pendingToUser(Users user);
     public boolean removePendingUser(Users pendingUser);
+    public boolean removeUser(Users pendingUser);
 }

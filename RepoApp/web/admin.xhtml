@@ -50,6 +50,11 @@ and open the template in the editor.
                          <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
                     </p:commandButton>
                 </p:column>
+                  <p:column>
+                      <p:commandButton id="makeAdmin" update=":form" value="Approve and Make Admin" action="#{adminController.approveAdminUser()}" title="ApproveAdmin">
+                         <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
+                    </p:commandButton>
+                </p:column>
             </p:dataTable>
             
             <hr/>
@@ -74,7 +79,7 @@ and open the template in the editor.
                    <h:outputText value="#{user.admin}" />
                </p:column>
                <p:column>
-                    <p:commandButton id="removeUser" value="Remove User" action="#{adminController.removeUser()}" title="Remove">
+                    <p:commandButton id="removeUser" update=":form" value="Remove User" action="#{adminController.removeUser()}" title="Remove">
                         <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
                    </p:commandButton>
                </p:column>

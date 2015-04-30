@@ -96,8 +96,8 @@ public class AdminController {
     public String approveAdminUser(){
         //need to move user to Users table
         StudentDAO aProfileDAO = new StudentDAOImpl(); 
-        ArrayList<Users> arrL = aProfileDAO.findPendBySTUID(userID);
-        pendingUser = arrL.get(0);
+//        ArrayList<Users> arrL = aProfileDAO.findPendBySTUID(userID);
+//        pendingUser = arrL.get(0);
         boolean success = aProfileDAO.removePendingUser(pendingUser);
         if(success){
             pendingUser.setAdmin("TRUE");
@@ -109,7 +109,9 @@ public class AdminController {
     }
     
     public void removeUser(){
-        System.out.println("To Do!");
+        StudentDAO aProfileDAO = new StudentDAOImpl();
+        boolean success = aProfileDAO.removeUser(pendingUser);
+        System.out.println(success);
     }
     
     
