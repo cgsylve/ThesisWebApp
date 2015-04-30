@@ -46,23 +46,15 @@ public class SignUpController {
             context.addMessage(null, new FacesMessage("Passwords do not match!"));
         }
         
-//        if(theModel.getFirstName().length() > 25 || theModel.getFirstName().length() < 2){
-//            context.addMessage(null,new FacesMessage("First name length must be between 2 and 25 characters in length."));
-//        }
-//        
-//        if(theModel.getLastName().length() > 25 || theModel.getLastName().length() < 2){
-//            context.addMessage(null,new FacesMessage("Last name length must be between 2 and 25 characters in length."));
-//        }
-        
         if(userIDExists(theModel.getUserID())){
-            context.addMessage(null,new FacesMessage("User ID already taken."));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!","User ID already taken."));
         }
         
         if(context.getMessageList().size() > 0)
             return(null);
         else{
-            StudentDAO aProfileDAO = new StudentDAOImpl();    // Creating a new object each time.
-            int rowCount = aProfileDAO.createUser(theModel); // Doing anything with the object after this?
+            StudentDAO aProfileDAO = new StudentDAOImpl();    
+            int rowCount = aProfileDAO.createUser(theModel); 
             if (rowCount == 1){
                 //JavaMailApp.sendMail(theModel);
                 return "waitingForAdmin.xhtml?faces-redirect=true";

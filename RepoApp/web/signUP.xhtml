@@ -21,14 +21,15 @@ and open the template in the editor.
         <div style="font-family:Source Sans Pro; position:absolute; border-radius:15px; right:35%; padding:23px">
             <h2 style="padding-left:33%">Sign Up</h2>
         <h:form>
-            
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                 <h:panelGrid columns="2" id="signupPanelGrid" cellpadding="5">
-                    
-                
+                   
                 <h:outputLabel for="fName" value="First Name:"/>
                 <p:inputText id="fName" value="#{signUpController.theModel.firstName}"/>
+                
                 <h:outputLabel for="lName" value="Last Name: "/>
                 <p:inputText id="lName" value="#{signUpController.theModel.lastName}"/>
+                
                 <h:outputLabel for="usernameSignUp" value="Username: "/>
                 <p:inputText id="usernameSignUp" value="#{signUpController.theModel.userID}"/>
                 
@@ -40,12 +41,16 @@ and open the template in the editor.
                 
                 <h:outputLabel for="email" value="Email: "/>              
                 <p:inputText id="email" value="#{signUpController.theModel.email}"/>
+                
                 <h:outputLabel for="secQuestion" value="Security Question: "/>
                 <p:inputText id="secQuestion" value="#{signUpController.theModel.secQ}"/>
+                
                 <h:outputLabel for="secAnswer" value="Security Answer: "/>
                 <p:inputText id="secAnswer" value="#{signUpController.theModel.secA}"/>
+                
                 <h:outputLabel for="reason" value="Reason for account: "/>
                 <p:inputTextarea id="reason" value="#{signUpController.theModel.reason}"/>
+                
                 <p:commandButton id="signupSubmitButton" value="Submit" action="#{signUpController.createUser()}" icon="fa-arrow-circle-o-right"/>
                 <p:button id="backToSignIn" value="Back To Sign In" outcome="index.xhtml" icon="fa-arrow-circle-o-right"/> 
             </h:panelGrid>
