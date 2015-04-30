@@ -25,6 +25,7 @@ public class StudentDAOImpl implements StudentDAO{
        return aStudentCollection;
     }
     
+    @Override
     public ArrayList findAllPending() {
        String query = "SELECT * FROM CGSYLVE_SP2015_PROJECT353.PENDINGUSERS";
        ArrayList aStudentCollection = selectProfilesFromDB(query);

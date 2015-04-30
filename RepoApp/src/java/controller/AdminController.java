@@ -71,10 +71,8 @@ public class AdminController {
     public String approveUser(){
         //need to move user to Users table
         StudentDAO aProfileDAO = new StudentDAOImpl(); 
-        System.out.println(userID);
         ArrayList<Users> arrL = aProfileDAO.findPendBySTUID(userID);
         pendingUser = arrL.get(0);
-        System.out.println(pendingUser.toString());
         boolean success = aProfileDAO.removePendingUser(pendingUser);
         if(success){
             int rowCount = aProfileDAO.pendingToUser(pendingUser); 
@@ -83,4 +81,7 @@ public class AdminController {
         //need to send confirmation email that the users accoutn ahs been approved
         return null;
     }
+    
+    
+    
 }

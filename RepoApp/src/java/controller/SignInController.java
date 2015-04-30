@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import model.Users;
 
 /**
@@ -22,6 +23,7 @@ import model.Users;
 @SessionScoped
 public class SignInController {
     private Users theModel;
+    private Users signedInUser;
     private boolean loggedIn = false;
     
     public SignInController(){
@@ -40,14 +42,11 @@ public class SignInController {
         FacesContext context = FacesContext.getCurrentInstance(); 
         StudentDAO aProfileDAO = new StudentDAOImpl(); 
         ArrayList<Users> user = aProfileDAO.findBySTUID(theModel.getUserID());
-        System.out.print("Test1:");
-        System.out.println(user.get(0).getUserID());
         if(user.size() > 0){
-            System.out.print("test2: ");
             String storedPass = user.get(0).getPassword();
-            System.out.println(user.get(0).getPassword());
             if(storedPass.equals(theModel.getPassword())){
                 System.out.println("Logged In!");
+                signedInUser = user.get(0);
                 loggedIn = true;
                 return "home.xhtml?faces-redirect=true";
             }
@@ -61,6 +60,17 @@ public class SignInController {
         if(context.getMessageList().size() > 0)
             return(null);
         return "loginFailed.xhtml?faces-redirect=true";
+    }   
+    
+        
+    public boolean isAdmin(){
+        StudentDAO aProfileDAO = new StudentDAOImpl();
+        ArrayList<Users> user = aProfileDAO.findBySTUID(signedInUser.getUserID());
+        return "TRUE".equals(user.get(0).getAdmin());
     }
     
+    public String signOut(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index.xhtml";
+    }
 }
