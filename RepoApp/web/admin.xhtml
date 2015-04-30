@@ -84,7 +84,38 @@ and open the template in the editor.
                    </p:commandButton>
                </p:column>
            </p:dataTable>
-            
         </h:form>
+        
+         <hr/>
+        <h:form>
+            <p:dataTable id="dashboard" var="project" value="#{searchController.arry}">
+                <f:facet name="header">
+                    Admin Dashboard
+                </f:facet>
+                <p:column headerText="Author">
+                    <h:outputText value="#{project.studentName}" />
+                </p:column>
+                <p:column headerText="Live Link">
+                    <h:outputText value="#{project.liveLink}" />
+                </p:column>
+                <p:column headerText="Semester">
+                    <h:outputText value="#{project.semesterCompleted}" />
+                </p:column>
+                <p:column headerText="Course Number">
+                    <h:outputText value="#{project.courseNumber}" />
+                </p:column>
+                <!--<p:column>
+                     <p:commandButton id="approveUser" update=":form" value="Approve User" action="#{adminController.approveUser()}" title="Approve">
+                         <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
+                    </p:commandButton>
+                </p:column>
+                  <p:column>
+                      <p:commandButton id="makeAdmin" update=":form" value="Approve and Make Admin" action="#{adminController.approveAdminUser()}" title="ApproveAdmin">
+                         <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
+                    </p:commandButton>
+                </p:column>-->
+        </p:dataTable>
+        </h:form>
+        
     </body>
 </html>
