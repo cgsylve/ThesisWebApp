@@ -7,6 +7,7 @@ package controller;
 
 import dao.StudentDAOImpl;
 import dao.StudentDAO;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -21,7 +22,7 @@ import model.Users;
  */
 @ManagedBean(name="signInController")
 @SessionScoped
-public class SignInController {
+public class SignInController implements Serializable{
     private Users theModel;
     private Users signedInUser;
     private boolean loggedIn = false;
