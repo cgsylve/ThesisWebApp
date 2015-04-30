@@ -6,11 +6,12 @@
 package controller;
 
 import dao.SearchDAOImpl;
+import dao.StudentDAO;
+import dao.StudentDAOImpl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
 import model.ProjectBean;
 import model.SearchBean;
 import model.Thesis;
@@ -35,6 +36,7 @@ public class SearchController implements Serializable{
     SignInController siController; 
     UpdateBean updateBean; 
     ArrayList<Thesis> arry;
+    private Users signedInUser; 
     
     
     
@@ -111,7 +113,7 @@ public class SearchController implements Serializable{
     
     public String getMyProjects(){
         
-        String username = "cgsylve"; 
+        String username = "cgsylve";
         
         arry = searchDAO.searchMyProjects(username);
         searchBean.setThesisList(arry);
