@@ -15,7 +15,8 @@ import model.UploadBean;
  * @author Huan_Nguyen
  */
 public class UploadDAOImpl {
-    public int updateRecords(UploadBean uploadBean){
+    //public int updateRecords(UploadBean uploadBean){
+    public int updateRecords(String courseNumber,String liveLink,String keyWordOne,String committeeChair,String semesterComplete,String studentName,String dateCompleted,String userID){
         //Connection DBConn = null; 
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -31,15 +32,25 @@ public class UploadDAOImpl {
         String updateString;
         Statement stmt = DBConn.createStatement();
         updateString = "INSERT INTO CGSYLVE_SP2015_PROJECT353.PROJECTTABLE VALUES ('"
-                + uploadBean.getCourseNumber()
-                + "','" + uploadBean.getLiveLink()
-                + "','" + uploadBean.getKeyWordDone()
-                + "','" + uploadBean.getCommitteeChair()
-                + "','" + uploadBean.getSemesterComplete()
-                + "','" + uploadBean.getStudentName()
-                + "','" + uploadBean.getDateCompleted()
-                + "','" + uploadBean.getUserID()
+                + courseNumber
+                + "','" + liveLink
+                + "','" + keyWordOne
+                + "','" + committeeChair
+                + "','" + semesterComplete
+                + "','" + studentName
+                + "','" + dateCompleted
+                + "','" + userID
                 + "')";
+        
+//        + uploadBean.getCourseNumber()
+//                + "','" + uploadBean.getLiveLink()
+//                + "','" + uploadBean.getKeyWordOne()
+//                + "','" + uploadBean.getCommitteeChair()
+//                + "','" + uploadBean.getSemesterComplete()
+//                + "','" + uploadBean.getStudentName()
+//                + "','" + uploadBean.getDateCompleted()
+//                + "','" + uploadBean.getUserID()
+//                + "')";
         
             //DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
             //String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/cgsylve_Sp2015_RepoApp";
