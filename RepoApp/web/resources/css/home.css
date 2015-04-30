@@ -26,11 +26,11 @@ body{
 /* SPECIFIC ID'S */
 
 #wrapper{
-    background-color:#DDDDDD; 
+    
     width:100%; 
 }
 
-#featuredThesis{
+#wrapper #featuredThesis{
     float:left; 
      
      

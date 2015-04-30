@@ -111,14 +111,13 @@ public class SearchController implements Serializable{
         //return "searchResults.xhtml";
     }
     
-    public String getMyProjects(){
+    public void getMyProjects(){
         
-        String username = "cgsylve";
+        String username = "csylv";
         
         arry = searchDAO.searchMyProjects(username);
         searchBean.setThesisList(arry);
         
-        return "mewtwo";
     }
     
     public String updateMyProject(){
@@ -145,7 +144,7 @@ public class SearchController implements Serializable{
         
     }
     
-    public String showSimilar(){
+    public void showSimilar(){
         
         String searchTerm = searchBean.getSearchTerm();
         String searchType = searchBean.getSearchType();
@@ -155,10 +154,7 @@ public class SearchController implements Serializable{
         
         arry = searchDAO.searchSimilarProjects(searchType, searchTerm, addTerm, addCat);
         searchBean.setSimilarList(arry);
-        
-        
-        
-        return "doublemoo";
+         
     }
 
     /**
@@ -173,6 +169,10 @@ public class SearchController implements Serializable{
      */
     public void setSiController(SignInController siController) {
         this.siController = siController;
+    }
+    
+    public void getFeatured(){
+        
     }
 
     

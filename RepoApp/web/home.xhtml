@@ -35,13 +35,26 @@ and open the template in the editor.
         <div id="wrapper">
             <div id="featuredThesis">
                 <h1 id ="featuredThesisHeader">Featured Thesis</h1>
+                
 
                 <div id="featuredThesisBody">
-                    Test thesis
-                    Info
+                    Featured
                    
                 </div>
+                <hr/>
                 
+                 <h:form>
+                <br/>
+                <br/>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                Enter the email that you would like to use to subscribe/unsubscribe: 
+                <br/>
+                <p:inputText value="#{mailController.mailBean.userEmail}"/>
+                <br/>
+                <p:commandButton value="Subscribe to mailing list" action="#{mailController.addToList()}"/>
+                <br/>
+                <p:commandButton value="Unsubscribe from mailing list" action="#{mailController.removeFromList()}"/>
+                </h:form>
                 
                 
             </div> <!-- End featured thesis -->
@@ -79,17 +92,22 @@ and open the template in the editor.
                         <br/>
                         <p:inputText value="#{updateController.updateBean.liveLinkKey}"/>
                         <p:commandButton styleClass = "subButton" value="Update This Project" action="#{updateController.populateForm()}"/>
-                        </h:form>               
+                        </h:form>    
+                        
+                       
                         
                     
                     
             </div> <!-- End My Projects --> 
             
             
+            
+            
         </div> <!-- End wrapper -->
         
-        <p:commandButton id="subscribeButton" value="Subscribe to mailing list."/>
-        <p:commandButton id="unsubButton" value="Unsubscribe from mailing list."/>
+        
+        
+        
         
         
         

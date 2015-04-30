@@ -105,7 +105,7 @@ public class FileUploadController implements Serializable{
             String relativeWebPath = "\\resources\\projects";
             ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
             String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
-            absoluteFileName = absoluteDiskPath + "\\" + fileName;
+            absoluteFileName = "gfish2.it.ilstu.edu\\crsage\\projects\\" + fileName;
             File file = new File(absoluteFileName);
 
             // write the inputStream to a FileOutputStream
