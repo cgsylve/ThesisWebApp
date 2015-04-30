@@ -61,6 +61,12 @@ public class AdminController {
         return pendingUsers;
     }
     
+    public ArrayList populateUserTable(){
+        StudentDAO aProfileDAO = new StudentDAOImpl();
+        ArrayList<Users> users = aProfileDAO.findAll();
+        return users;
+    }
+    
     public Users getPendingUser(String userID){
         StudentDAO DAO = new StudentDAOImpl();
         ArrayList<Users> arrL = DAO.findBySTUID(userID);
@@ -75,6 +81,21 @@ public class AdminController {
         pendingUser = arrL.get(0);
         boolean success = aProfileDAO.removePendingUser(pendingUser);
         if(success){
+            int rowCount = aProfileDAO.pendingToUser(pendingUser); 
+        }
+        
+        //need to send confirmation email that the users accoutn ahs been approved
+        return null;
+    }
+    
+    public String approveAdminUser(){
+        //need to move user to Users table
+        StudentDAO aProfileDAO = new StudentDAOImpl(); 
+        ArrayList<Users> arrL = aProfileDAO.findPendBySTUID(userID);
+        pendingUser = arrL.get(0);
+        boolean success = aProfileDAO.removePendingUser(pendingUser);
+        if(success){
+            pendingUser.setAdmin("TRUE");
             int rowCount = aProfileDAO.pendingToUser(pendingUser); 
         }
         

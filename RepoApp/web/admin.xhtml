@@ -17,11 +17,12 @@ and open the template in the editor.
     <body style="font-family:Source Sans Pro; color:#FFCC00 ; background-color:#323232">
         <div id="searchNavbar" class="navbar">
             <h:form>
-            <h:panelGrid columns="4" id="navGrid" cellpadding="5">
-               <h:commandLink value="Home" style="text-decoration:none;color:#FFCC00;"/>
-               <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
-               <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
-               <h:commandLink value="Admin" action="admin.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+            <h:panelGrid columns="5" id="navGrid" cellpadding="5">
+                   <h:commandLink value="Home" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="Create/Upload" action="upload.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="Search" action="search.xhtml" style="text-decoration:none;color:#FFCC00;"/>
+                   <h:commandLink value="Admin" action="admin.xhtml" style="text-decoration:none;color:#FFCC00;" rendered="#{signInController.isAdmin()}" />
+                   <h:commandLink value="Sign Out" action="#{signInController.signOut()}" style="text-decoration:none;color:#FFCC00;"/>
             </h:panelGrid>
             </h:form>
         </div>
@@ -30,7 +31,24 @@ and open the template in the editor.
         <h:form>
             <h:outputLabel id="choosePendingUser" value="Input User ID: "/>
             <p:inputText id="userID" value="#{adminController.userID}"/>
-            <h:commandButton id="approveUser" value="Choose User ID" action="#{adminController.approveUser()}" />
+            <h:commandButton id="approveUser" value="Approve User" action="#{adminController.approveUser()}" /><p>  </p>
+            <h:commandButton id="approveAdminUser" value="Approve User and Make Admin" action="#{adminController.approveAdminUser()}" />
+            <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>User ID</th>
+             </tr>
+                <ui:repeat var="elem" value="#{adminController.populatePendingUserTable()}">
+
+            <tr>
+                <td>#{elem.firstName}</td>
+                <td>#{elem.lastName}</td>
+                <td>#{elem.userID}</td>
+             </tr>
+                </ui:repeat>
+            </table>
+            <h1>Approved Users</h1>
             <table>
             <tr>
                 <th>First Name</th>
@@ -38,7 +56,7 @@ and open the template in the editor.
                 <th>User ID</th>
                 <th>Admin</th>
              </tr>
-                <ui:repeat var="elem" value="#{adminController.populatePendingUserTable()}">
+                <ui:repeat var="elem" value="#{adminController.populateUserTable()}">
 
             <tr>
                 <td>#{elem.firstName}</td>
@@ -49,5 +67,14 @@ and open the template in the editor.
                 </ui:repeat>
             </table>
         </h:form>
+        
+        <h1>Dashboard</h1>
+        <table>
+            <tr>
+                <th>Most Downloaded Projects</th>
+                <th>Most Searched Projects</th>
+                <th></th>
+            </tr>
+        </table>
     </body>
 </html>

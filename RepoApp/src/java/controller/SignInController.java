@@ -51,11 +51,11 @@ public class SignInController {
                 return "home.xhtml?faces-redirect=true";
             }
             else{
-                context.addMessage(null, new FacesMessage("Incorrect Password!"));
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Incorrect Password!"));
             }
         }
         else{
-            context.addMessage(null, new FacesMessage("User ID Does Not Exist!"));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "User ID Does Not Exist!"));
         }
         if(context.getMessageList().size() > 0)
             return(null);

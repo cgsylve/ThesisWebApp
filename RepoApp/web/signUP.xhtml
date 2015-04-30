@@ -46,7 +46,8 @@ and open the template in the editor.
                 <p:inputText id="secAnswer" value="#{signUpController.theModel.secA}"/>
                 <h:outputLabel for="reason" value="Reason for account: "/>
                 <p:inputTextarea id="reason" value="#{signUpController.theModel.reason}"/>
-                <p:commandButton id="signupSubmitButton" value="Submit" action="#{signUpController.createUser()}" icon="fa-arrow-circle-o-right"/>           
+                <p:commandButton id="signupSubmitButton" value="Submit" action="#{signUpController.createUser()}" icon="fa-arrow-circle-o-right"/>
+                <p:button id="backToSignIn" value="Back To Sign In" outcome="index.xhtml" icon="fa-arrow-circle-o-right"/> 
             </h:panelGrid>
            
         </h:form>

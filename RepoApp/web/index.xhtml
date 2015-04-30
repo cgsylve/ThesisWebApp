@@ -17,17 +17,18 @@
         </div>
         <div name="loginGrid" >
         <h:form>
-            <p:growl id="loginGrowl" sticky="true" showDetail="true"/>
-            <!-- <h:outputText value="Welcome! Please login or sign up to continue."/> -->
             <p:panel header="Welcome! Please log in to continue." style="font-family:Source Sans Pro; position:absolute; right:200px; bottom:205px; border-radius: 25px; padding:20px">
-                <h:panelGrid columns="2" id="loginPanelGrid" cellpadding="5">
+                <h:panelGrid columns="3" id="loginPanelGrid" cellpadding="5">
 
                     <h:outputLabel for="username" value="Username: " id="usernameLabel"/>
                     <p:inputText id="username" label="Username 1" required="true" value="#{signInController.theModel.userID}"/>
+                    <p:message for="username"/>
 
                     <h:outputLabel for="password" value="Password: " id="passwordLabel"/>
                     <p:password id="password" label="Password 1" required="true" value="#{signInController.theModel.password}"/>
-                    <p:commandButton id="loginButton" value="Login" icon="fa-arrow-circle-o-right" action="#{signInController.signIn()}"/>
+                    <p:message for="password"/>
+                    
+                    <p:commandButton id="loginButton" value="Login" icon="fa-arrow-circle-o-right" update="loginPanelGrid" action="#{signInController.signIn()}"/>
                     <p:button id="signupButton" value="Sign Up" outcome="signUP.xhtml" icon="fa-check-circle"/>
 
                 </h:panelGrid>
