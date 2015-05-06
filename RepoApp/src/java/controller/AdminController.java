@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.SearchDAOImpl;
 import dao.StudentDAOImpl;
 import dao.StudentDAO;
 import java.util.ArrayList;
@@ -125,7 +126,9 @@ public class AdminController {
     }
     
     public void markAsFeatured(){
-        StudentDAO aProfileDAO = new StudentDAOImpl();
+        SearchDAOImpl searchDAO = new SearchDAOImpl();
+        project.setFeatured("TRUE");
+        boolean result = searchDAO.markFeatured(project);
     }
     
     

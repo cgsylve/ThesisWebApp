@@ -212,7 +212,33 @@ public class SearchDAOImpl {
         }
         return projects;
     }
-        
+    
+    public boolean markFeatured(ProjectBean project){
+        System.out.println(project.getStudentName());
+        boolean success = false;
+        int returnInt = 0;
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+        try {
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/cgsylve_Sp2015_RepoApp";
+            Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+            String sql;
+            Statement stmt = DBConn.createStatement();
+            sql = "UPDATE CGSYLVE_SP2015_PROJECT353.PROJECTTABLE SET FEATURED = 'TRUE' WHERE STUDENTNAME = '" + project.getStudentName() + "'";
+            returnInt = stmt.executeUpdate(sql);
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        if(returnInt > 0)
+            return success = true;
+        else
+            return success;
+    }
 }
     
     
