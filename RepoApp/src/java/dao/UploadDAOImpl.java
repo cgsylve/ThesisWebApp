@@ -40,6 +40,7 @@ public class UploadDAOImpl {
                 + "','" + studentName
                 + "','" + dateCompleted
                 + "','" + userID
+                + "','" + "FALSE"
                 + "')";
         
 //        + uploadBean.getCourseNumber()

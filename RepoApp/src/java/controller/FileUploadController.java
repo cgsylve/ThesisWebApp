@@ -20,6 +20,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import model.UploadBean;
+import org.primefaces.event.FileUploadEvent;
 
 //import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
@@ -107,10 +108,11 @@ public class FileUploadController implements Serializable{
             String relativeWebPath = "\\resources";
             ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
             String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
+            
             absoluteFileName = absoluteDiskPath + "\\" + fileName;
-
+            System.out.println("The absolute file path is: " + absoluteFileName);
             File file = new File(absoluteFileName);
-
+            
             // write the inputStream to a FileOutputStream
             OutputStream out = new FileOutputStream(file);
 
@@ -212,5 +214,12 @@ public class FileUploadController implements Serializable{
      */
     public void setTheFile(UploadedFile theFile) {
         this.theFile = theFile;
+    }
+    
+    public void fileUploadListener(FileUploadEvent e){
+        // Get uploaded file from the FileUploadEvent
+        this.theFile = e.getFile();
+        // Print out the information of the file
+        System.out.println("Uploaded File Name Is :: "+ theFile.getFileName()+" :: Uploaded File Size :: "+theFile.getSize());
     }
 }
