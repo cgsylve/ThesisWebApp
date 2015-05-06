@@ -13,7 +13,7 @@ and open the template in the editor.
     <h:head>
         <title>Search Repository</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet library="css" name="search.css"  />        
+        <h:outputStylesheet library="css" name="search.css"  />
     </h:head>
     <h:body>
         <div id="searchNavbar" class="navbar">
@@ -63,6 +63,7 @@ and open the template in the editor.
         <h:panelGroup id="resultOutput">
             <table>
             <tr>
+            <th>Download Link</th>
             <th>Course Number</th>
             <th>Live Link</th>
             <th>Keyword</th>
@@ -73,11 +74,12 @@ and open the template in the editor.
             </tr>
             
         <ui:repeat var="elem" value="#{searchController.searchBean.thesisList}">
-        
-            
+                    
         <tr>
+            <td><p:commandButton value="Download" action="#{fileUploadController.downloadFile(elem.liveLink)}" ajax="false"></p:commandButton></td>
+<!--            <td><p:commandButton value="Download" action="#{fileBean.downloadAction(elem.liveLink)}"><f:ajax render="@form"></f:ajax><p:fileDownload value="#{fileBean.theFile}"/></p:commandButton></td>-->
             <td>#{elem.courseNumber}</td>
-            <td>#{elem.liveLink}</td>
+            <td><p:commandButton value="Livelink" action="#{elem.liveLink}"></p:commandButton></td>
             <td>#{elem.keywordOne}</td>
             <td>#{elem.committeeChair}</td>
             <td>#{elem.semesterCompleted}</td>
