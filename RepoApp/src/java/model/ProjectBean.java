@@ -22,7 +22,8 @@ public class ProjectBean {
     private String committeeChair; 
     private String semesterCompleted; 
     private String studentName; 
-    private String dateCompleted; 
+    private String dateCompleted;
+    private String featured;
     
     
     public ProjectBean(){
@@ -37,6 +38,25 @@ public class ProjectBean {
         this.studentName = studentName; 
         this.dateCompleted = dateCompleted; 
     }
+    
+     public ProjectBean(String courseNumber, String liveLink, String keywordOne, String committeeChair, String semesterCompleted, String studentName, String dateCompleted, String featured){
+        this.courseNumber = courseNumber; 
+        this.liveLink = liveLink; 
+        this.keywordOne = keywordOne;        
+        this.committeeChair = committeeChair; 
+        this.semesterCompleted = semesterCompleted; 
+        this.studentName = studentName; 
+        this.dateCompleted = dateCompleted; 
+        this.featured = featured;
+    }
+     
+     public void setFeatured(String featured){
+         this.featured = featured;
+     }
+     
+     public String getFeatured(){
+         return featured;
+     }
     
     /**
      * @return the courseNumber

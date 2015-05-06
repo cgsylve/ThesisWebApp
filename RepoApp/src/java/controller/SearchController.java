@@ -174,7 +174,14 @@ public class SearchController implements Serializable{
     public void getFeatured(){
         
     }
-
     
+    public ArrayList<ProjectBean> getProjectsForTable(){
+        ArrayList<ProjectBean> projects = searchDAO.findAllProjects();
+        return projects;
+    }
+
+    public void markAsFeatured(){
+        
+    }
     
 }

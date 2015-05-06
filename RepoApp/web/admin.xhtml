@@ -27,95 +27,94 @@ and open the template in the editor.
             </h:panelGrid>
             </h:form>
         </div>
+        
         <hr/>
         <h:form id="form">
-            <p:dataTable id="pendingDT" var="user" value="#{adminController.populatePendingUserTable()}">
-                <f:facet name="header">
-                    Users Pending Approval
-                </f:facet>
-                <p:column headerText="User ID">
-                    <h:outputText value="#{user.userID}" />
-                </p:column>
-                <p:column headerText="First Name">
-                    <h:outputText value="#{user.firstName}" />
-                </p:column>
-                <p:column headerText="Last Name">
-                    <h:outputText value="#{user.lastName}" />
-                </p:column>
-                <p:column headerText="email">
-                    <h:outputText value="#{user.email}" />
-                </p:column>
-                <p:column>
-                     <p:commandButton id="approveUser" update=":form" value="Approve User" action="#{adminController.approveUser()}" title="Approve">
-                         <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
-                    </p:commandButton>
-                </p:column>
-                  <p:column>
-                      <p:commandButton id="makeAdmin" update=":form" value="Approve and Make Admin" action="#{adminController.approveAdminUser()}" title="ApproveAdmin">
-                         <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
-                    </p:commandButton>
-                </p:column>
-            </p:dataTable>
-            
-            <hr/>
-            
-            <p:dataTable id="usersDT" var="user" value="#{adminController.populateUserTable()}">
-               <f:facet name="header">
-                   Current Approved Users
-               </f:facet>
-               <p:column headerText="User ID">
-                   <h:outputText value="#{user.userID}" />
-               </p:column>
-               <p:column headerText="First Name">
-                   <h:outputText value="#{user.firstName}" />
-               </p:column>
-               <p:column headerText="Last Name">
-                   <h:outputText value="#{user.lastName}" />
-               </p:column>
-               <p:column headerText="email">
-                   <h:outputText value="#{user.email}" />
-               </p:column>
-                <p:column headerText="admin">
-                   <h:outputText value="#{user.admin}" />
-               </p:column>
-               <p:column>
-                    <p:commandButton id="removeUser" update=":form" value="Remove User" action="#{adminController.removeUser()}" title="Remove">
-                        <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
-                   </p:commandButton>
-               </p:column>
-           </p:dataTable>
-        </h:form>
-        
-         <hr/>
-        <h:form>
-            <p:dataTable id="dashboard" var="project" value="#{searchController.arry}">
-                <f:facet name="header">
-                    Admin Dashboard
-                </f:facet>
-                <p:column headerText="Author">
-                    <h:outputText value="#{project.studentName}" />
-                </p:column>
-                <p:column headerText="Live Link">
-                    <h:outputText value="#{project.liveLink}" />
-                </p:column>
-                <p:column headerText="Semester">
-                    <h:outputText value="#{project.semesterCompleted}" />
-                </p:column>
-                <p:column headerText="Course Number">
-                    <h:outputText value="#{project.courseNumber}" />
-                </p:column>
-                <!--<p:column>
-                     <p:commandButton id="approveUser" update=":form" value="Approve User" action="#{adminController.approveUser()}" title="Approve">
-                         <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
-                    </p:commandButton>
-                </p:column>
-                  <p:column>
-                      <p:commandButton id="makeAdmin" update=":form" value="Approve and Make Admin" action="#{adminController.approveAdminUser()}" title="ApproveAdmin">
-                         <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
-                    </p:commandButton>
-                </p:column>-->
-        </p:dataTable>
-        </h:form>
-        
+            <p:tabView id="tab">
+            <p:tab title="Pending Users">
+                <p:dataTable id="pendingDT" var="user" value="#{adminController.populatePendingUserTable()}">
+                    <f:facet name="header">
+                        Users Pending Approval
+                    </f:facet>
+                    <p:column headerText="User ID">
+                        <h:outputText value="#{user.userID}" />
+                    </p:column>
+                    <p:column headerText="First Name">
+                        <h:outputText value="#{user.firstName}" />
+                    </p:column>
+                    <p:column headerText="Last Name">
+                        <h:outputText value="#{user.lastName}" />
+                    </p:column>
+                    <p:column headerText="email">
+                        <h:outputText value="#{user.email}" />
+                    </p:column>
+                    <p:column>
+                         <p:commandButton id="approveUser" update=":form:tab" value="Approve User" action="#{adminController.approveUser()}" title="Approve">
+                             <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
+                        </p:commandButton>
+                    </p:column>
+                      <p:column>
+                          <p:commandButton id="makeAdmin" update=":form:tab" value="Approve and Make Admin" action="#{adminController.approveAdminUser()}" title="ApproveAdmin">
+                             <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+            <p:tab title="Users" id="users">
+                <p:dataTable id="usersDT" var="user" value="#{adminController.populateUserTable()}">
+                    <f:facet name="header">
+                        Current Approved Users
+                    </f:facet>
+                    <p:column headerText="User ID">
+                        <h:outputText value="#{user.userID}" />
+                    </p:column>
+                    <p:column headerText="First Name">
+                        <h:outputText value="#{user.firstName}" />
+                    </p:column>
+                    <p:column headerText="Last Name">
+                        <h:outputText value="#{user.lastName}" />
+                    </p:column>
+                    <p:column headerText="email">
+                        <h:outputText value="#{user.email}" />
+                    </p:column>
+                     <p:column headerText="admin">
+                        <h:outputText value="#{user.admin}" />
+                    </p:column>
+                    <p:column>
+                         <p:commandButton id="removeUser" update=":form:tab" value="Remove User" action="#{adminController.removeUser()}" title="Remove">
+                             <f:setPropertyActionListener value="#{user}" target="#{adminController.pendingUser}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+            <p:tab title="Projects">
+                <p:dataTable id="projects" var="project" value="#{searchController.getProjectsForTable()}">
+                    <f:facet name="header">
+                        All Posted Projects
+                    </f:facet>
+                    <p:column headerText="Author">
+                        <h:outputText value="#{project.studentName}" />
+                    </p:column>
+                    <p:column headerText="Live Link">
+                        <h:outputText value="#{project.liveLink}" />
+                    </p:column>
+                    <p:column headerText="Semester">
+                        <h:outputText value="#{project.semesterCompleted}" />
+                    </p:column>
+                    <p:column headerText="Course Number">
+                        <h:outputText value="#{project.courseNumber}" />
+                    </p:column>
+                    <p:column headerText="Featured">
+                        <h:outputText value="#{project.featured}" />
+                    </p:column>
+                    <p:column>
+                          <p:commandButton id="markFeatured" update=":form:tab" value="Mark Project As Featured" action="#{searchController.markAsFeatured()}" title="MarkFeatured">
+                             <f:setPropertyActionListener value="#{project}" target="#{searchController.projectBean}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+        </p:tabView>
+        </h:form>        
     </body>
 </html>

@@ -6,11 +6,14 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.Thesis;
+import model.ProjectBean;
 
 /**
  *
@@ -171,18 +174,46 @@ public class SearchDAOImpl {
         return projectCollection; 
     }
     
-        
+    public ArrayList findAllProjects() {
+        ArrayList projects = new ArrayList();
+        String query = "SELECT * FROM CGSYLVE_SP2015_PROJECT353.PROJECTTABLE";                
+        Connection DBConn = null;
+        try{
+            DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/cgsylve_Sp2015_RepoApp"; //name the database here
+            DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+            
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            String courseNumber, liveLink, key1, chair, semCompleted, stuName, dateCompleted, featured;
+            ProjectBean project;        
+            while(rs.next()){
+                courseNumber = rs.getString("COURSENUMBER");
+                liveLink = rs.getString("LIVELINK");
+                key1 = rs.getString("KEYWORDONE");               
+                chair = rs.getString("COMMITTEECHAIR");
+                semCompleted = rs.getString("SEMESTERCOMPLETED");
+                stuName = rs.getString("STUDENTNAME");
+                dateCompleted = rs.getString("DATECOMPLETED");
+                featured = rs.getString("FEATURED");
+
+                project = new ProjectBean(courseNumber, liveLink, key1, chair, semCompleted, stuName, dateCompleted, featured);
+                projects.add(project);
+            }
+            rs.close();
+            stmt.close();
+        }catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        try{
+            DBConn.close();
+        }catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return projects;
     }
-    
-    
-    
-//    public ArrayList findAll() {
-//
-//        String query = "SELECT * FROM PROJECTTABLE";
-//        ArrayList aProfileCollection = searchProjects(query);
-//        return aProfileCollection;
-//
-//    }
+        
+}
     
     
 

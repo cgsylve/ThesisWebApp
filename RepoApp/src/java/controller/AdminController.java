@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import model.ProjectBean;
 import model.Users;
 
 /**
@@ -22,6 +23,7 @@ import model.Users;
 @SessionScoped
 public class AdminController {
     private Users pendingUser;
+    private ProjectBean project;
     private String userID;
     private ArrayList<Users> users;
     
@@ -53,6 +55,14 @@ public class AdminController {
     
     public void setPendingUser(Users pendingUser){
         this.pendingUser = pendingUser;
+    }
+    
+    public ProjectBean getProject(){
+        return project;
+    }
+    
+    public void setProject(ProjectBean project){
+        this.project = project;
     }
     
     public static boolean pendingUserExists(String userID){
@@ -112,6 +122,10 @@ public class AdminController {
         StudentDAO aProfileDAO = new StudentDAOImpl();
         boolean success = aProfileDAO.removeUser(pendingUser);
         System.out.println(success);
+    }
+    
+    public void markAsFeatured(){
+        StudentDAO aProfileDAO = new StudentDAOImpl();
     }
     
     
