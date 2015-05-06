@@ -6,6 +6,7 @@ package controller;
 
 import dao.UploadDAOImpl;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import model.UploadBean;
@@ -102,13 +104,9 @@ public class FileUploadController implements Serializable{
     public String returnFile(String fileName, InputStream in) {
         String absoluteFileName="";   
         try {
-            String relativeWebPath = "\\resources\\projects";
+            String relativeWebPath = "\\resources";
             ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
             String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
-
-            absoluteFileName = "gfish2.it.ilstu.edu\\crsage\\projects\\" + fileName;
-
-            
             absoluteFileName = absoluteDiskPath + "\\" + fileName;
 
             File file = new File(absoluteFileName);
@@ -134,6 +132,46 @@ public class FileUploadController implements Serializable{
         return absoluteFileName;
     }
 
+    public void downloadFile(String liveLink) {
+        try {
+            System.out.println(liveLink);
+            int cut = liveLink.lastIndexOf("\\");
+            String fileName = liveLink.substring(cut);
+            fileName = fileName.substring(1);
+            System.out.println(fileName);
+            
+            String relPath = "\\resources";
+            ServletContext context = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            System.out.println(context);
+            String diskPath = context.getRealPath(relPath);
+            System.out.println(diskPath);
+            String uploadPath = diskPath + "\\" + fileName;
+            System.out.println(uploadPath);
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ExternalContext ec = fc.getExternalContext();
+            File file1 = new File(uploadPath);
+            ec.responseReset();
+            ec.setResponseContentType(fileName);
+            ec.setResponseContentLength((int) file1.length());
+            ec.setResponseHeader("Content-Disposition", "attachment; filename=" + fileName);
+            
+            OutputStream output = ec.getResponseOutputStream();
+            try (FileInputStream input = new FileInputStream(file1)) {
+                byte[] buffer = new byte[1024];
+                int len = input.read(buffer);
+                while (len != -1) {
+                    output.write(buffer, 0, len);
+                    len = input.read(buffer);
+                }
+            }
+            output.close();
+            FacesContext.getCurrentInstance().getResponseComplete();
+        } catch (IOException err) {
+            err.printStackTrace();
+        }
+        
+    }
+    
     /**
      * @return the destination
      */

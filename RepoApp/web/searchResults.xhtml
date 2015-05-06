@@ -19,6 +19,7 @@ and open the template in the editor.
         
         <table>
         <tr>
+            <th>Download Link</th>
             <th>Course Number</th>
             <th>Live Link</th>
             <th>Keyword</th>
@@ -30,6 +31,7 @@ and open the template in the editor.
         <ui:repeat var="elem" value="#{searchController.searchBean.thesisList}">
         
         <tr>
+            <td><p:commandLink value="Download" action=""></p:commandLink></td>
             <td>#{elem.courseNumber}</td>
             <td>#{elem.liveLink}</td>
             <td>#{elem.keywordOne}</td>
@@ -71,6 +73,7 @@ and open the template in the editor.
                         
                 <ui:repeat var="elem" value="#{searchController.searchBean.similarList}">
                     <tr>
+                            <th>Download Link</th>
                             <th>Course Number</th>
                             <th>Live Link</th>
                             <th>Keyword</th>
@@ -80,6 +83,7 @@ and open the template in the editor.
                             <th>Date Completed</th>
                         </tr>
                         <tr>
+                            <td><h:commandButton value="Download" action="#{elem.liveLink}"></h:commandButton></td>
                             <td>#{elem.courseNumber}</td>
                             <td>#{elem.liveLink}</td>
                             <td>#{elem.keywordOne}</td>
